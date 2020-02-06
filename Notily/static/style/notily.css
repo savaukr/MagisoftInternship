@@ -1,0 +1,75 @@
+@font-face {
+	font-family: "Roboto";
+	src: url("../fonts/Roboto-Medium.ttf");
+}
+@font-face {
+	font-family: "Roboto italic";
+	src: url("../fonts/Roboto-Italic.ttf");
+}
+@font-face {
+	font-family: "Roboto Bold";
+	src: url("../fonts/Roboto-Bold.ttf");
+}
+body {
+	font-size: 24px;
+}
+.container {
+	max-width:1440px;
+}
+.header {
+	max-width:100%;
+	background: 
+		url("../img/background_phone.png") no-repeat 85% bottom,
+		url("../img/background_header.png") no-repeat;
+	background-size: contain, cover;
+	height: 600px;
+}
+.header-block {
+	width:30%;
+	position: relative;
+    top: 50%;
+    left:17%;
+    transform: translateY(-50%);
+}
+.header-block__description {
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	color: #FFF;
+}
+.header-block__icons {
+	padding-top: 0.83em;
+}
+.header-block__icon {
+	display:inline-block;
+	width: 2.08em;
+	height: 2.08em;
+	opacity:0.6;
+	border-radius: 50%;
+}
+.header-block__icon_mgr{
+	margin-right: 0.625em;
+}
+.header-block__ios {
+	background: url("../img/icon/icon1_header.svg") no-repeat center, #000;
+}
+.header-block__android {
+	background: url("../img/icon/icon2_header.svg") no-repeat center, #000;
+}
+.header-block__windows {
+	background: url("../img/icon/icon3_header.svg") no-repeat center, #000;
+}
+.header-block__icon:hover {
+	background-color: #2ECC71;
+}
+@media screen and (max-width: 680px) {
+	.header-block {
+		width:60%;
+	}
+}
+@media screen and (max-width: 380px) {
+	.header-block {
+		width:85%;
+		left:7%;
+	}
+}
