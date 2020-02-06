@@ -1,0 +1,8 @@
+.sass-cache/
+*.css.map
+
+/resolved
+/unresolved
+/localserver/node_modules/
+node_modules/
+temp/
