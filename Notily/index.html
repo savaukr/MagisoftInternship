@@ -2,37 +2,46 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" type="text/css" href="Notily/static/style/reset.css">
+	<link rel="stylesheet" type="text/css" href="Notily/static/style/notily.css">
 	<title>Notily</title>
 </head>
 <body>
 	<div class="container">
 		<header class="header">
-			<div class="logo"></div>
-			<div clas="header__description">A great new free psd theme to showcase your new application.</div>
-			<div class="header__icons"></div>
+			<div class="header-block">
+				<div class="header-block__logo"><a href=""><img src="Notily/static/img/logo.png"></a></div>
+				<div class="header-block__description">A great new free psd theme to showcase your new application.</div>
+				<div class="header-block__icons">
+					<div class="header-block__icon header-block__ios header-block__icon_mgr"></div>
+					<div class="header-block__icon header-block__android header-block__icon_mgr"></div>
+					<div class="header-block__icon header-block__windows"></div>
+				</div>
+			</div>
 		</header>
 		<main>
-			<section>
-				<div>
-					<div></div>
-					<h2>Editable Theme</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
+			<section class="section1">
+				<div class="section1__item">
+					<div class="section1__icon section1__icon1 section1__icon_center"></div>
+					<h2 class="section-title">Editable Theme</h2>
+					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
 				</div>
-				<div>
-					<div></div>
-					<h3>Flat Design</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
+				<div class="section1__item">
+					<div class="section1__icon section1__icon2 section1__icon_center"></div>
+					<h3 class="section-title">Flat Design</h3>
+					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
 				</div>
-				<div>
-					<div></div>
-					<h3>Reach Your Audience</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
+				<div class="section1__item">
+					<div class="section1__icon section1__icon3 section1__icon_center"></div>
+					<h3 class="section-title">Reach Your Audience</h3>
+					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
 				</div>
 			</section>
 			<section>
 				<div>
-					<h2>Get Notified Of Any Updates!</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla nisl congue congue. Maecenas nec condimentum libero, at elementum mauris. Phasellus eget nisi dapibus, ultricies nisl at, hendrerit risusuis ornare luctus id sollicitudin ante lobortis at.</p>
+					<h2 class="section-title">Get Notified Of Any Updates!</h2>
+					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla nisl congue congue. Maecenas nec condimentum libero, at elementum mauris. Phasellus eget nisi dapibus, ultricies nisl at, hendrerit risusuis ornare luctus id sollicitudin ante lobortis at.</p>
 					<div>
 						<input type="email" name="email" placeholder="Email Address" />
 						<button>Nitify</button>
@@ -51,7 +60,7 @@
 					<div class="slider-photo__photos">
 					</div>
 					<h3>Say Hi & Get in Touch</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit suspendisse.  </p>
+					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit suspendisse.  </p>
 				</div>
 				<div class="icons"></div>
 			</section>
