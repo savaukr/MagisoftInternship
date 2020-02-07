@@ -3,15 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<link rel="stylesheet" type="text/css" href="Notily/static/style/reset.css">
-	<link rel="stylesheet" type="text/css" href="Notily/static/style/notily.css">
+	<link rel="stylesheet" type="text/css" href="./static/style/reset.css">
+	<link rel="stylesheet" type="text/css" href="./static/style/notily.css">
 	<title>Notily</title>
 </head>
 <body>
 	<div class="container">
 		<header class="header">
 			<div class="header-block">
-				<div class="header-block__logo"><a href=""><img src="Notily/static/img/logo.png"></a></div>
+				<div class="header-block__logo"><a href=""><img src="./static/img/logo.png"></a></div>
 				<div class="header-block__description">A great new free psd theme to showcase your new application.</div>
 				<div class="header-block__icons">
 					<div class="header-block__icon header-block__ios header-block__icon_mgr"></div>
@@ -38,17 +38,19 @@
 					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla.</p>
 				</div>
 			</section>
-			<section>
-				<div>
+			<section class="section2">
+				<div class="section2__div" >
 					<h2 class="section-title">Get Notified Of Any Updates!</h2>
-					<p class="section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla nisl congue congue. Maecenas nec condimentum libero, at elementum mauris. Phasellus eget nisi dapibus, ultricies nisl at, hendrerit risusuis ornare luctus id sollicitudin ante lobortis at.</p>
-					<div>
-						<input type="email" name="email" placeholder="Email Address" />
-						<button>Nitify</button>
-					</div>
+					<p class="section2-text section-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse fringilla fringilla nisl congue congue. Maecenas nec condimentum libero, at elementum mauris. Phasellus eget nisi dapibus, ultricies nisl at, hendrerit risusuis ornare luctus id sollicitudin ante lobortis at.</p>
+					<form name="notify" class="form-notify">
+						<input type="email" name="email" class="form-notify__input" placeholder="Email Address" />
+						<button type="submit" class="form-notify__button">Notify</button>
+					</form>
 				</div>
-				<div>
-					<video  src="http://ia800501.us.archive.org/10/items/BigBuckBunny_310/big_buck_bunny_640_512kb.mp4"></video>
+				<div class="section2__div section2__div_padding">
+					<div>
+						<video class="section2__video" src="http://ia800501.us.archive.org/10/items/BigBuckBunny_310/big_buck_bunny_640_512kb.mp4" controls="controls"></video>
+					</div>
 				</div>
 			</section>
 			<section>
