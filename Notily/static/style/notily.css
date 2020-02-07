@@ -10,8 +10,13 @@
 	font-family: "Roboto Bold";
 	src: url("../fonts/Roboto-Bold.ttf");
 }
+* {
+	margin:0;
+	padding: 0;
+}
 body {
 	font-size: calc(0.75rem + 0.83vw);
+	font-family: 'Roboto', sans-serif;
 }
 .container {
 	max-width:1440px;
@@ -33,7 +38,6 @@ body {
     transform: translateY(-50%);
 }
 .header-block__description {
-	font-family: 'Roboto', sans-serif;
 	font-size: 1em;
 	line-height: 1.5em;
 	color: #FFF;
@@ -122,14 +126,13 @@ body {
 	justify-content: center;
 }
 .section2__video {
-	
+	width:100%
 }
 .form-notify {
 	display: flex;
 	width: 80%;
 }
 .form-notify__input {
-	font-family: Roboto;
 	font-size: 0.75em;
 	line-height: 1.083em;
 	color: #B7B7B7;
@@ -151,6 +154,23 @@ body {
 	outline: none;
 	padding: 0.625em 1.25em;
 }
+.footer {
+	background-color: #DAE0E5; 
+}
+.footer__ul {
+	display: flex;
+	justify-content: center;
+}
+.footer__ul__li {
+	padding: 1.667em 0.834em; 
+	list-style: none;
+}
+.footer__link{
+	text-decoration: none;
+	font-size: 0.667em;
+	line-height: 1.083em;
+	color: #696969;
+}
 
 @media screen and (max-width: 680px) {
 	.header-block {
@@ -159,9 +179,7 @@ body {
 	.section2__div{
 		flex-basis: 85%;
 	}
-	.section2__video {
-		 width:100%
-	};
+	
 }
 @media screen and (max-width: 450px) {
 	.header-block {
