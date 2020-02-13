@@ -23,7 +23,6 @@ body {
 	max-width:1440px;
 	margin: 0 auto;
 }
-
 .header {
 	max-width:100%;
 	background: 
@@ -70,7 +69,6 @@ body {
 	background-color: #2ECC71;
 	cursor: pointer;
 }
-
 .section1 {
 	display: flex;
 	justify-content: space-around;
@@ -277,7 +275,6 @@ body {
 	.section2__div{
 		flex-basis: 85%;
 	}
-	
 }
 @media screen and (max-width: 450px) {
 	.header-block {
@@ -291,5 +288,4 @@ body {
 		padding: 0.25em 0;
 		text-align: center; 
 	}
-
 }
