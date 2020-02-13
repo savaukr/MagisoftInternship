@@ -1,15 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
-
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
 const webpack = require('webpack');
-require('dotenv').config();
-
+require('dotenv').config()
 const ENV = process.env.APP_ENV;
 const isTest = ENV === 'test'
 const isProd = ENV === 'prod';
-
 function setDevTool() {  // function to set dev-tool depending on environment
     if (isTest) {
       return 'inline-source-map';
@@ -19,14 +15,12 @@ function setDevTool() {  // function to set dev-tool depending on environment
       return 'eval-source-map';
     }
 }
-
-
 const config = {
   entry: __dirname + "/src/app/index.js",
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js',
-    publicPath: './' 
+    publicPath: '/' // для <npm run build> потрібно './'
   },
   devtool: setDevTool(),
   module: { 
@@ -67,8 +61,8 @@ const config = {
       contentBase: './src/public',
       port: 7700,
   } 
-}  
-
+}                                                           
+                 
 if (isProd) {
     config.plugins.push(
         new UglifyJSPlugin(),
@@ -77,4 +71,4 @@ if (isProd) {
       }])
     );
 }; 
-module.exports = config;                     
+module.exports = config; 
