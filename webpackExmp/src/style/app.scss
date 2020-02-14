@@ -1,14 +1,26 @@
 .container {
 	background-color:#2e878a;
-	width:40%;
+	max-width:400px;
 	height: 10rem;
 	display:flex;
 	justify-content: center;
 	align-items:center;
+	border-radius:20px;
 }
 .calc {
-
+max-width: 80%;
+	.calc_padding {
+		padding: 5px 10px;
 	}
+	.calc__result {
+		background-color: white;
+	}
+	.calc__equal {
+		margin: 0 10px;
+	}
+}
 .calc__calculate {
 	margin-top: 0.5rem;
+	background-color: #2e879a;
+	color: white;
 }
