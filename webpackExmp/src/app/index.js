@@ -1,14 +1,15 @@
 import '../style/app.scss';
-//import calc from "./calc.js";
+//import {user} from "./user.js";
+
 let stec_numbers =[];
 let stec_actions = [];
 let action_priority = {'+': 1, '-':1, '*':2, '/':2};
-let last ={};
 let calc = {} ;
 let result='NO';
+//let str = document.querySelector('.calc__input').value;
 
 calc.validate = (str)=>{
-	if (/^[-+()*\/0-9\s]+$/.test(str)) {
+	if (/^[-+()*\.\/0-9\s]+$/.test(str)) {
         try {
             console.log('eval ='+ eval(str));
             return true;
@@ -24,21 +25,30 @@ calc.validate = (str)=>{
     };
 }
 
-calc.pars = ()=>{
-	let str = document.querySelector('.calc__input').value;
+calc.parse = (str)=>{
+	let arr=[];
+	
 	if (calc.validate(str)) {
-		let arr= str.split('');
+		arr = str.match(/\.\d+|\d+\.?\d*|./g);
+	}
+	console.log('arr='+ arr);
+	return arr;
+}
+
+calc.findResult = (str)=>{
+	let arr = calc.parse(str);
 		for (let i=0; i < arr.length; i++) {
-			if (arr[i].search(/\d+/) != -1) {console.log(`${arr[i]}=number`); calc.ifNumber(arr[i])}
-				else if ((arr[i]).search(/[-+*\/]/) !=-1 ) {console.log(`${arr[i]} = action`); calc.ifAction(arr[i])}
-					else if ((arr[i]).search(/[()]/) !=-1 ) {console.log(`${arr[i]}=parenthesis`); calc.ifParenthesis(arr[i]);}
+			if (arr[i].search(/\d+/) != -1) {calc.ifNumber(arr[i])}
+				else if ((arr[i]).search(/[-+*\/]/) !=-1 ) { calc.ifAction(arr[i])}
+					else if ((arr[i]).search(/[()]/) !=-1 ) { calc.ifParenthesis(arr[i]);}
 		}
 		while(stec_actions[stec_actions.length-1]) calc.calculate();
 		console.log('result ='+stec_numbers[0]);
-	} 
 	result = stec_numbers[0];
-	document.querySelector('.calc__result').innerHTML = result;
+	document.querySelector('.calc__result').innerHTML = result.toFixed(3);
+	return result;
 }
+
 calc.ifNumber = (number)=>{
 	stec_numbers.push(number);
 	console.log(stec_numbers);
@@ -51,20 +61,6 @@ calc.ifAction = (action)=>{
  	}
  	stec_actions.push(action);
  	console.log(stec_actions);
-	/*
-	let last ={};
-	last.action = stec_actions[stec_actions.length-1] || false;
-	last.number = stec_numbers[stec_numbers.length-1] || false;
-	last.prev_number = stec_numbers[stec_numbers.length-2] || false;
-	if (last.number === false || prev_last === false) return;
-
-	while (last.action !== false && action_priority[action] <= action_priority[last.action]) {
-		last.action = stec_actions[stec_actions.length-1] || false;
-		calc.calculation(last.action,last.number, last.prev_number);
-	} 
-
-	stec_actions.push(action);
-*/
 }
 calc.ifParenthesis = (item)=>{
 	if (item == '(') {
@@ -89,4 +85,7 @@ calc.calculate = ()=> {
 	stec_actions.pop();
 }
 
-document.querySelector('.calc__calculate').addEventListener('click', calc.pars);
+document.querySelector('.calc__calculate').addEventListener('click',
+	 ()=>{calc.findResult(document.querySelector('.calc__input').value)}
+);
+//module.exports = calc.findResult;
