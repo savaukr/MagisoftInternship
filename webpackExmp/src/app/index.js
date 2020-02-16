@@ -1,4 +1,4 @@
-import '../style/app.scss';
+// import '../style/app.scss';
 //import {user} from "./user.js";
 
 let stec_numbers =[];
@@ -27,7 +27,6 @@ calc.validate = (str)=>{
 
 calc.parse = (str)=>{
 	let arr=[];
-	
 	if (calc.validate(str)) {
 		arr = str.match(/\.\d+|\d+\.?\d*|./g);
 	}
@@ -43,10 +42,8 @@ calc.findResult = (str)=>{
 					else if ((arr[i]).search(/[()]/) !=-1 ) { calc.ifParenthesis(arr[i]);}
 		}
 		while(stec_actions[stec_actions.length-1]) calc.calculate();
-		console.log('result ='+stec_numbers[0]);
-	result = stec_numbers[0];
-	document.querySelector('.calc__result').innerHTML = result.toFixed(3);
-	return result;
+		//console.log('result ='+stec_numbers[0]);
+	return stec_numbers[0];;
 }
 
 calc.ifNumber = (number)=>{
@@ -84,8 +81,13 @@ calc.calculate = ()=> {
 	stec_numbers.push(num);
 	stec_actions.pop();
 }
-
+/*
 document.querySelector('.calc__calculate').addEventListener('click',
-	 ()=>{calc.findResult(document.querySelector('.calc__input').value)}
+	 (e)=>{
+	 	e.preventDefault();
+	 	result = calc.findResult(document.querySelector('.calc__input').value);
+	 	document.querySelector('.calc__result').innerHTML = result.toFixed(3);
+	 }
 );
-//module.exports = calc.findResult;
+*/
+module.exports = calc.findResult;
