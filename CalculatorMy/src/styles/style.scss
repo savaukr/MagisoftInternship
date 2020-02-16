@@ -14,11 +14,15 @@ body {
 }
 .calc {
 max-width: 80%;
+	.calc__input {
+		border-radius: 5px;
+	}
 	.calc_padding {
 		padding: 5px 10px;
 	}
 	.calc__result {
 		background-color: white;
+		border-radius: 5px;;
 	}
 	.calc__equal {
 		margin: 0 10px;
