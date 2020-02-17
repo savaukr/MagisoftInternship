@@ -1,9 +1,17 @@
 
-import Parser from './scripts/parser';
-import { add } from './scripts/core';
-
+/*import Parser from './scripts/parser';
+import { add } from './scripts/core';*/
 import './styles/style.scss';
+import {parserString} from './scripts/core/parserString/parserString.js';
+import {calcResult} from './scripts/core/calcResult.js';
 
+try {
+	console.log('Результат = '+calcResult(parserString('(6+2)*40')));
+}
+catch(err) {
+	console.log('Виникла помилка:'+err.message);
+}
+/*
 const p = new Parser();
 
 function evaluateAsFloat(code) {
@@ -19,3 +27,4 @@ function evaluateAsFloat(code) {
 
 // работает только с "+", добавьте остальные операции 
 console.log(evaluateAsFloat('1 + 2 + 3 + 47'));
+*/
