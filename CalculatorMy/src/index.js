@@ -1,16 +1,30 @@
-
-/*import Parser from './scripts/parser';
-import { add } from './scripts/core';*/
 import './styles/style.scss';
 import {parserString} from './scripts/core/parserString/parserString.js';
-import {calcResult} from './scripts/core/calcResult.js';
+import {calc} from './scripts/core/calcResult.js';
+
+
 
 try {
-	console.log('Результат = '+calcResult(parserString('(6+2)*40')));
+	function getStr(elem) {
+		return elem.value;
+	} 
+	let elemResult = document.querySelector('.calc__result');
+	document.querySelector('.calc__calculate').addEventListener('click',
+		 (e)=>{
+		 	e.preventDefault();
+		 	let str = getStr(document.querySelector('.calc__input'));
+		 	//alert(str);
+		 	let result = calc.calcResult(parserString(str)).toFixed(3);
+		 	//alert(result);
+		 	elemResult.innerHTML = result;
+		 	console.log('Результат = '+result);
+	})
 }
 catch(err) {
 	console.log('Виникла помилка:'+err.message);
 }
+
+
 /*
 const p = new Parser();
 
