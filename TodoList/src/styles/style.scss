@@ -1,6 +1,103 @@
 body {
- // background-color: crimson;
-  //background-image: url('./../assets/cat.jpg');
-  //background-size: 200px 200px;
+}
+
+$button_rad: 3rem;
+
+.todo {
+	width:100vw;
+	height: 100vh;
+	background-color:  rgb(240,239,233);
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	.todo__wrapper {
+		min-width: 250px;
+		min-height: 500px;
+		background-color:white; 
+		border-radius: 5px;
+		position: relative;
+	}
+}
+.todo__date {
+	display: flex;
+	justify-content: space-around;
+	align-items:center;
+	padding: 1.5rem 0;
+
+	.todo__dateMonthYear {
+		display: flex;
+		align-items:center;
+
+	}
+	.todo__dt {
+		font-size: 2rem;
+		padding-right: 0.2rem;
+	}
+}
+.todo__list {
+	padding: 0 1rem;
+	.todo__item {
+		display:flex;
+		justify-content: space-between;
+	}
+}
+.todo__buttons {
+	display:flex;
+	justify-content: space-arround;
+	position:absolute;
+	top:100%;
+	left:50%;
+	transform: translateY(-$button_rad/2) translateX(-50%);
+	.todo__button {
+		width:$button_rad;
+		height: $button_rad;
+		background-color: rgba(80,227,164, 0.95);
+		border-radius: 50%;
+		margin:0 0.2rem;
+		text-align: center;
+		vertical-align: center;
+	}
+	.button__add:before {
+		content:'';
+		display:inline-block;
+		width:50%;
+		height: 50%;
+		border-top: 4px solid white;
+		transform: translateY(80%);
+	}
+	.button__add:after {
+		content:'';
+		display:inline-block;
+		width:50%;
+		height: 50%;
+		border-right: 4px solid white;
+		transform: translateY(-80%) translateX(-44%);
+	}
+	.button__delete:before {
+		content:'';
+		display:inline-block;
+		width:50%;
+		height: 50%;
+		border-top: 4px solid white;
+		transform: translateY(80%);
+	}
+	.button__mark:before {
+		content:'';
+		display:inline-block;
+		width:50%;
+		height: 50%;
+		border-top: 4px solid white;
+		transform: translateY(65%) translateX(65%) rotate(-45deg);
+	}
+	.button__mark:after {
+		content:'';
+		display:inline-block;
+		width:50%;
+		height: 50%;
+		border-right: 4px solid white;
+		transform: translateY(-50%) translateX(-55%) rotate(-45deg);
+	}
+
+	
 }
 

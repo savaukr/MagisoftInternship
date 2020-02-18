@@ -1,8 +1,9 @@
-
 //import Parser from './scripts/parser';
-//import { add } from './scripts/core';
-
+import {todoSetDate} from './scripts/core';
+import add from './scripts/features/add/add.js';
 import './styles/style.scss';
 
+todoSetDate(new Date());
+add();
 
-console.log('todo list);
+	
