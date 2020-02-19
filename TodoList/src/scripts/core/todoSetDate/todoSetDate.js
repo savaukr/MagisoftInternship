@@ -8,10 +8,3 @@ function todoSetDate(date) {
 };
 
 export {todoSetDate};
-
-/*
-{title: "Visit all lectures",
- createdAt: "15.02.2020",
- dueDate: "16.02.2020",
- isDone: false 
-}*/

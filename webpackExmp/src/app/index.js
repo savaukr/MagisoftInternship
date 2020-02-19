@@ -50,6 +50,9 @@ calc.ifNumber = (number)=>{
 	stec_numbers.push(number);
 	console.log(stec_numbers);
 }
+
+
+
 calc.ifAction = (action)=>{
  	let last_action = stec_actions[stec_actions.length-1] || false;
  	while ( (last_action !== false) && (action_priority[action] <= action_priority[last_action]) ) {
