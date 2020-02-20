@@ -1,4 +1,5 @@
-function deleteTodo(arr, title) {
+function deleteTodo(mas, title) {
+	let arr = mas.concat();
 	for (let i=0; i< arr.length; i++) {
 		if (arr[i].title == title) arr.splice(i,1);
 ;	}

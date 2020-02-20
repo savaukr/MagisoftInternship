@@ -73,10 +73,16 @@ $button_rad: 3rem;
 	.button__add:after {
 		content:'';
 		display:inline-block;
-		width:50%;
-		height: 50%;
+		width:45%;
+		height: 45%;
 		border-right: 4px solid white;
-		transform: translateY(-80%) translateX(-44%);
+		transform: translateY(-80%) translateX(-40%);
+	}
+	.button__clear:after {
+		content:'clear';
+		color:white;
+		font-weight: bold;
+		display:inline-block;
 	}
 	
 }
@@ -135,34 +141,3 @@ button.delMark__mark.mark {
 		border-right: 2px solid white;
 	}
 }
-
-/*
-
-
-	.button__delete:before {
-		content:'';
-		display:inline-block;
-		width:50%;
-		height: 50%;
-		border-top: 4px solid white;
-		transform: translateY(50%);
-	}
-	
-.button__mark:before {
-	content:'';
-	display:inline-block;
-	width:50%;
-	height: 50%;
-	border-top: 4px solid white;
-	transform: translateY(70%) translateX(80%) rotate(-45deg);
-}
-.button__mark:after {
-	content:'';
-	display:inline-block;
-	width:50%;
-	height: 50%;
-	border-right: 4px solid white;
-	transform: translateY(-50%) translateX(-55%) rotate(-45deg);
-}
-*/
-

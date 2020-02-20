@@ -6,5 +6,4 @@ function todoSetDate(date) {
 	document.querySelector('.todo__year').innerHTML=date.getFullYear();
 	document.querySelector('.todo__day').innerHTML = days[date.getDay()];
 };
-
-export {todoSetDate};
+export default todoSetDate;
