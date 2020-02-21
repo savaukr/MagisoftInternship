@@ -1,14 +1,11 @@
-function deleteTodo(mas, title) {
-	let arr = mas.concat();
+function deleteTodo(mas, id) {
+	let arr = [].concat(mas);
 	for (let i=0; i< arr.length; i++) {
-		if (arr[i].title == title) arr.splice(i,1);
-;	}
+		if (arr[i].id == id) {
+			arr.splice(i,1);
+			return arr;
+		}
+	}
 	return arr;
-	/*
-	let todoItem = e.target.closest('.todo__item');
-	let title = todoItem.querySelector('[data-title]').dataset.title;
-	localStorage.removeItem(title);
-	todoItem.remove();
-	*/
 }
 export default deleteTodo;

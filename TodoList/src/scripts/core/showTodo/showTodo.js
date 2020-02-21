@@ -4,20 +4,21 @@ import markTodo from '../../features/markTodo/markTodo';
 function createTitle(todo) {
     let titleP = document.createElement('p');
     titleP.innerHTML = todo.title;
-    titleP.dataset.title = todo.title;
+    titleP.dataset.id = todo.id; 
+    /*titleP.dataset.title = todo.title;
     titleP.dataset.createdAt = todo.createdAt;
     titleP.dataset.dueDate = todo.dueDate;
-    titleP.dataset.isDone = todo.isDone;
+    titleP.dataset.isDone = todo.isDone;*/
     return titleP;
 }
 function createDeleteBt(todo, mas){
-    let arr = mas.concat();
+    let arr = [].concat(mas);
     let iconDelete = document.createElement('button');
     iconDelete.onclick = (e)=>{
-        arr = deleteTodo(arr, todo.title);
+        //arr = deleteTodo(arr, todo.id);
         let todoItem = e.target.closest('.todo__item');
         todoItem.remove();
-        localStorage.setItem('todo', JSON.stringify(arr));
+        localStorage.setItem('todo', JSON.stringify(deleteTodo(arr, todo.id)));
     };
     let spanDelete = document.createElement('span');
     spanDelete.classList.add('span__delete');
@@ -26,12 +27,12 @@ function createDeleteBt(todo, mas){
     return iconDelete;
 }
 function createMarkBt(todo, mas) {
-    let arr = mas.concat();
+    let arr = [].concat(mas);
     let iconMark = document.createElement('button');
     if (todo.isDone) iconMark.classList.add('mark');
     iconMark.onclick = (e)=>{ 
-        arr = markTodo(arr, todo);
-        localStorage.setItem('todo', JSON.stringify(arr));
+       //arr = markTodo(arr, todo);
+        localStorage.setItem('todo', JSON.stringify(markTodo(arr, todo)));
         e.target.closest('.delMark__mark').classList.toggle('mark');
     };
     let spanMark = document.createElement('span');
@@ -42,7 +43,7 @@ function createMarkBt(todo, mas) {
 }
 
 function showTodo(todo,  mas, elem) {
-    let arr = mas.concat();
+    let arr = [].concat(mas);
     let todoItem= document.createElement('div');
     let titleP = createTitle(todo);
     let iconDelete = createDeleteBt(todo,arr);

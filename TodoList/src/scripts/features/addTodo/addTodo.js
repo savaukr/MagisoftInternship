@@ -1,6 +1,7 @@
 function addTodo(mas, title, dueDate) {
-	let arr = mas.concat();
-	arr.push({title:title, createdAt:new Date(), dueDate:dueDate, isDone:false});
+	let arr = [].concat(mas);
+	let id = arr.length ? arr[arr.length-1].id+1 : 0;
+	arr.push({id: id, title:title, createdAt:new Date(), dueDate:dueDate, isDone:false});
 	return arr;
 	//localStorage.setItem(title, JSON.stringify({createdAt:new Date(), dueDate:dueDate, isDone:false}))
 }

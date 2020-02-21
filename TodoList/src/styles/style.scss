@@ -36,7 +36,7 @@ $button_rad: 3rem;
 	}
 }
 .todo__list {
-	padding: 0 1rem;
+	padding: 0 0.3rem 0 1rem;
 	.todo__item {
 		display:flex;
 		justify-content: space-between;
@@ -92,7 +92,7 @@ $button_rad: 3rem;
 	align-items: center;
 
 	.delMark__delete, .delMark__mark {
-		margin: 0 0.1rem;
+		margin: 0 0.2rem;
 		width:1.5rem;
 		height: 1.5rem;
 		display:inline-block;
@@ -101,7 +101,7 @@ $button_rad: 3rem;
 		outline: none;
 		&:hover {
 			cursor: pointer;
-			background-color:rgb(80,227,164) ;
+			background-color:rgb(80,127,164) ;
 		}
 	}
 	.delMark__delete :before {

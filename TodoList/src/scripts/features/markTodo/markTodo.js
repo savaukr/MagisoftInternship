@@ -1,7 +1,10 @@
-function markTodo(arr, todo) {
+function markTodo(mas, todo) {
+    let arr = [].concat(mas);
+    console.log(mas);
     for (let i=0; i< arr.length; i++) {
-        if (arr[i].title == todo.title && arr[i].dueDate == todo.dueDate)  arr[i].isDone = !arr[i].isDone;
+        if (arr[i].id  == todo.id)  arr[i].isDone = !arr[i].isDone;
     }
+    console.log(arr);
 	return arr;
 	/*let todoItem = e.target.closest('.todo__item');
 	let title = todoItem.querySelector('[data-title]').dataset.title;
