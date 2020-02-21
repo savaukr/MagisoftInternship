@@ -1,10 +1,11 @@
 import showTodo from '../showTodo/showTodo.js';
 function showAllTodo (mas) {
-    let arr=[];
+    let arr=[].concat(mas);
     let elem=document.querySelector('.todo__list');
-    for (let i=0; i< mas.length; i++) {
-        arr = showTodo(mas[i], mas, elem);
+    elem.innerHTML = '';
+    for (let i=0; i< arr.length; i++) {
+        showTodo(arr[i], arr, elem);
     };
-    return arr;
+    //return arr;
 }
 export default showAllTodo;

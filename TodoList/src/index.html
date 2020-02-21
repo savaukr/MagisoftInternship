@@ -19,11 +19,17 @@
 				</div>
 				<div class="todo__day"></div>	
 			</div>
+			<div class="filters">
+				<button class="filters__not-finished filters_button">not finished</button>
+				<button class="filters__out-dated filters_button">out dated</button>
+				<button class="filters__tomorrow filters_button">tomorrow</button>
+			</div>
+			<div class="todo__header">
+				<p class="todo__item__title">Description</p>
+				<p class="todo__item__icon">Done</p>
+			</div>
 			<div class="todo__list">
-				<div class="todo__item">
-					<p class="todo__item__title">Description</p>
-					<p class="todo__item__icon">Done</p>
-				</div>
+						
 			</div>
 			<div class="todo__buttons">
 				<button class="todo__buttons__add todo__button">
@@ -33,11 +39,18 @@
 					<span class="button__clear todo__buttons_span"></span>
 				</button>
 			</div>
-			<div>
-				<form>
-					<p><input type="text"></p>
-					<p><input type="date" value='2020-02-22'></p>
-					<button type="submit">Створити</button>
+			<div class="add-todo invisible">
+				<form class="add-todo__form">
+					<div class="add-todo__close">&times;</div>
+					<p>	
+						<label for="title">Нова справа:</label>
+						<input id="title" type="text">
+					</p>
+					<p>
+						<label for="dueDate">дата виконання:</label>
+						<input id="dueDate" type="date" value='2020-02-22'>
+					</p>
+					<button class="add-todo__submit" type="submit">Створити</button>
 				</form>
 			</div>
 		</div>

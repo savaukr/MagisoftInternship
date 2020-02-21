@@ -15,7 +15,6 @@ function createDeleteBt(todo, mas){
     let arr = [].concat(mas);
     let iconDelete = document.createElement('button');
     iconDelete.onclick = (e)=>{
-        //arr = deleteTodo(arr, todo.id);
         let todoItem = e.target.closest('.todo__item');
         todoItem.remove();
         localStorage.setItem('todo', JSON.stringify(deleteTodo(arr, todo.id)));
