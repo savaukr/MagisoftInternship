@@ -46,12 +46,14 @@ function showTodo(todo,  mas, elem) {
     let todoItem= document.createElement('div');
     let titleP = createTitle(todo);
     let iconDelete = createDeleteBt(todo,arr);
-    let iconMark = createMarkBt(todo, arr);   
+    let iconMark = createMarkBt(todo, arr); 
     todoItem.classList.add('todo__item');
     todoItem.append(titleP);
     let div=document.createElement('div');
     div.classList.add('delMark');
     div.append(iconDelete);
+    if (todo.isDone) iconMark.classList.add('mark')
+        else iconMark.classList.remove('mark');
     div.append(iconMark);
     todoItem.append(div);
     elem.append(todoItem);
