@@ -8,6 +8,7 @@ function todoFilters(mas) {
     let arr = [].concat(mas);
     if (!activeFilters.length) {
         showAllTodo(mas);
+        //тут зберегти arr в localStorage
         return;
     }
     for (let i=0; i< activeFilters.length; i++) {

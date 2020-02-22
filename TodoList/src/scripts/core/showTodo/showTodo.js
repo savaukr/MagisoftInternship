@@ -28,10 +28,12 @@ function createDeleteBt(todo, mas){
 function createMarkBt(todo, mas) {
     let arr = [].concat(mas);
     let iconMark = document.createElement('button');
-    if (todo.isDone) iconMark.classList.add('mark');
+    if (todo.isDone) iconMark.classList.add('mark')
+        else iconMark.classList.remove('mark');
     iconMark.onclick = (e)=>{ 
-       //arr = markTodo(arr, todo);
-        localStorage.setItem('todo', JSON.stringify(markTodo(arr, todo)));
+       arr = markTodo(arr, todo);
+      //блокувати натискання при вімкнених фільтрах обо не зберігати в локалсторедж (повертати arr )
+        localStorage.setItem('todo', JSON.stringify(arr));
         e.target.closest('.delMark__mark').classList.toggle('mark');
     };
     let spanMark = document.createElement('span');
@@ -43,17 +45,16 @@ function createMarkBt(todo, mas) {
 
 function showTodo(todo,  mas, elem) {
     let arr = [].concat(mas);
+   // console.log(arr);
     let todoItem= document.createElement('div');
     let titleP = createTitle(todo);
-    let iconDelete = createDeleteBt(todo,arr);
+    let iconDelete = createDeleteBt(todo, arr);
     let iconMark = createMarkBt(todo, arr); 
     todoItem.classList.add('todo__item');
     todoItem.append(titleP);
     let div=document.createElement('div');
     div.classList.add('delMark');
     div.append(iconDelete);
-    if (todo.isDone) iconMark.classList.add('mark')
-        else iconMark.classList.remove('mark');
     div.append(iconMark);
     todoItem.append(div);
     elem.append(todoItem);

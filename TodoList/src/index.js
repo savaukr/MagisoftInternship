@@ -6,6 +6,7 @@ import './styles/style.scss';
 
 
 let todoArr = localStorage.getItem('todo') ? JSON.parse(localStorage.getItem('todo')) : new Array();
+localStorage.setItem('todo', JSON.stringify(todoArr));
 //let data = JSON.parse(localStorage.getItem('todo'));
 todoSetDate(new Date());
 showAllTodo(todoArr);
