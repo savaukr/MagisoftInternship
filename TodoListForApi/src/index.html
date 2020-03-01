@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TodoList</title>
+  </head>
+  <body>
+    <div class="todo">
+		<div class="todo__wrapper">
+			<div class="todo__date">
+				<div class="todo__dateMonthYear">
+					<div class="todo__dt"></div>
+					<div class="todo__monthYear">	
+						<div class="todo__month"></div>
+						<div class="todo__year"></div>
+					</div>
+				</div>
+				<div class="todo__day"></div>	
+			</div>
+			<div class="filters">
+				<button class="filters__not-finished filters_button">not finished</button>
+				<button class="filters__out-dated filters_button">out dated</button>
+				<button class="filters__tomorrow filters_button">tomorrow</button>
+			</div>
+			<div class="todo__header">
+				<p class="todo__item__title">Description</p>
+				<p class="todo__item__icon">Done</p>
+			</div>
+			<div class="todo__list">	
+			</div>
+			<div class="todo__buttons">
+				<button class="todo__buttons__add todo__button">
+					<span class="button__add todo__buttons_span"></span>
+				</button>
+				<button class="todo__buttons__clear todo__button">
+					<span class="button__clear todo__buttons_span"></span>
+				</button>
+			</div>
+			<div class="add-todo invisible">
+				<form class="add-todo__form">
+					<div class="add-todo__close">&times;</div>
+					<p>	
+						<label for="title">Нова справа:</label>
+						<input id="title" type="text">
+					</p>
+					<p>
+						<label for="dueDate">дата виконання:</label>
+						<input id="dueDate" type="date" value='2020-02-22'>
+					</p>
+					<button class="add-todo__submit" type="submit">Створити</button>
+				</form>
+			</div>
+		</div>
+	</div>    	
+  </body>
+</html>

@@ -18,15 +18,19 @@ app.get("/api/todos", function(req, res){
 app.post("/api/todos", jsonParser, function (req, res) {
     if(!req.body) return res.sendStatus(400);
     var title = req.body.title;
+    var createDate = req.body.createDate;
     var dueDate = req.body.dueDate;
     var isDone = req.body.isDone;
-    var createDate = req.body.createDate;
+    
     var todo = {title: title, createdAt:createDate, dueDate: dueDate, isDone:isDone};
     var data = fs.readFileSync("todos.json", "utf8");
     var todos = JSON.parse(data);
     // знаходимо максимальний id
-    var id = Math.max.apply(Math,todos.map(function(o){return o.id;}))
-    todo.id = id+1;
+    var id;
+    if (todos.length !== 0) 
+        id = Math.max.apply(Math,todos.map(function(o){return o.id;}));
+    else id =-1;
+    todo.id =  id+1;
     // добавляємо справу у список
     todos.push(todo);
     var data = JSON.stringify(todos);

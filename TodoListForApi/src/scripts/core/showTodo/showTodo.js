@@ -1,5 +1,6 @@
 import deleteTodo from '../../features/deleteTodo/deleteTodo';
 import markTodo from '../../features/markTodo/markTodo';
+import todoApi from '../../core/todoApi/todoApi.js';
 
 function createTitle(todo) {
     let titleP = document.createElement('p');
@@ -19,7 +20,8 @@ function createDeleteBt(todo, mas){
     iconDelete.onclick = (e)=>{
         let todoItem = e.target.closest('.todo__item');
         todoItem.remove();
-        localStorage.setItem('todo', JSON.stringify(deleteTodo(arr, todo.id)));
+        todoApi.deleteTodo(todo.id);
+        //localStorage.setItem('todo', JSON.stringify(deleteTodo(arr, todo.id)));
     };
     let spanDelete = document.createElement('span');
     spanDelete.classList.add('span__delete');
@@ -34,9 +36,10 @@ function createMarkBt(todo, mas) {
         else iconMark.classList.remove('mark');
     iconMark.onclick = (e)=>{ 
        arr = markTodo(arr, todo);
+       todoApi.changeTodo(todo);
        //зчитати дані з локалсторедж, порівняти з arr по id і змінти ті які є в arr
       //блокувати натискання при вімкнених фільтрах обо не зберігати в локалсторедж (повертати arr )
-        localStorage.setItem('todo', JSON.stringify(arr));
+        //localStorage.setItem('todo', JSON.stringify(arr));
         e.target.closest('.delMark__mark').classList.toggle('mark');
     };
     let spanMark = document.createElement('span');

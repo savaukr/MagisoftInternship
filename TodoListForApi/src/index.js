@@ -2,17 +2,20 @@
 import todoSetDate from './scripts/core/todoSetDate/todoSetDate.js';
 import addListeners from './scripts/core/addListeners/addListeners';
 import showAllTodo from './scripts/core/showAllTodo/showAllTodo.js';
+import todoApi from './scripts/core/todoApi/todoApi.js';
 import './styles/style.scss';
 
 // init application
-let todoArr = localStorage.getItem('todo') ? JSON.parse(localStorage.getItem('todo')) : new Array();
-addListeners(todoArr);
-// ----
-
-localStorage.setItem('todo', JSON.stringify(todoArr));
-//let data = JSON.parse(localStorage.getItem('todo'));
 todoSetDate(new Date());
-showAllTodo(todoArr);
+let todoArr=[];
+todoApi.getTodos().then((result)=>{
+	todoArr = [].concat(result);
+	console.log(todoArr);
+	addListeners(todoArr);
+	showAllTodo(todoArr)
+	}
+);
+
 
 // TodoList
 // constructor(){
