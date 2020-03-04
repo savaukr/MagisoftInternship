@@ -8,3 +8,6 @@ const TodoSchema = new Schema({
     dueDate: String,
     IsDone:Boolean
 });
+
+const Todos = mongoose.model('todo', TodoSchema);
+module.exports = Todos;
