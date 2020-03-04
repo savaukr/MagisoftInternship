@@ -1,0 +1,12 @@
+.todo-container{
+  text-align: center;
+  width:350px;
+  height:600px;
+  background-color: rgb(255,255,255);
+  border-radius: 10px;
+}
+  @media screen and (max-width: 400px) {
+    .todo-container { 
+      width:90%;
+    }
+  }
