@@ -1,0 +1,15 @@
+.todo {
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+}
+.todo__func_del, .todo__func_isDone {
+    margin: 0 0.2rem;
+    width:1.5rem;
+    height: 1.5rem;
+    display:inline-block;
+    border:1px solid rgb(200,200,200);
+    border-radius: 50%;
+    outline: none;
+
+}
