@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import AppContainer from './containers/appContainer';
 
 import { Provider } from "react-redux";
 import { createStore } from "redux";
@@ -12,8 +12,8 @@ const store = createStore(rootReducer);
 //import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-    <Provider store={store}></Provider>
-        <App />
+    <Provider store={store}>
+        <AppContainer />
     </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

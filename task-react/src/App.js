@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 function App() {
   return (
     <div className="todo-container">
+      
       <Header/>
       <TodoList/>
       <Footer/>
