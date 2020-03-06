@@ -1,34 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Todo from './Todo/Todo';
-//props: {todos, onTodoClick}
+import './todoList.css';
+
 const TodoList = (props) => {
-    if (!props.todos.length) return <p>Список завдань пустий</p>
+    const {todos=[]} = props;
+    if (!todos.length) return <p>Список завдань пустий</p>
     else 
-        return <ul>
-            {props.todos.map((todo, index)=>(
+        return <>
+            <div className="todo__header">
+				<p className="todo__item__title">Description</p>
+                <p className="todo__item__dueDate">Due Date</p>
+				<p className="todo__item__icon">Done</p>
+			</div>
+            <ul className="todos-ul">
+            {todos.map((todo, index)=>(
                 <Todo 
                     key={todo.id}
-                    /*onClick={() => props.toggleTodo(todo.id)}*/
-                    title={todo.title}
-                    dueDate={todo.dueDate}
-                    isDone={todo.isDone}
+                    changeIsDone={props.changeIsDone}
+                    todo={todo}
                 />
             ))}
         </ul>
+        </>
 }
-/*
-TodoList.PropTypes =  {
-    todos: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
+
+TodoList.propTypes =  {
+    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+    changeIsDone: PropTypes.func.isRequired
+          
+            /*id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
             createDate:PropTypes.string,
             dueDate: PropTypes.string.isRequired,
             isDone: PropTypes.bool.isRequired 
         }).isRequired      
-    ).isRequired,
+    ).isRequired,*/
    // toggleTodo: PropTypes.func.isRequired
 }
-*/
+
 export default TodoList;

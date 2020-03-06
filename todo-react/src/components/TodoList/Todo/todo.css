@@ -2,6 +2,12 @@
         display:flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 0.5rem;
+}
+.todo__func {
+    display:flex;
+	justify-content: center;
+	align-items: center;
 }
 .todo__func_del, .todo__func_isDone {
     margin: 0 0.2rem;
@@ -11,5 +17,47 @@
     border:1px solid rgb(200,200,200);
     border-radius: 50%;
     outline: none;
+}
 
+.todo__func_isDone:hover {
+    cursor: pointer;
+	background-color:rgb(80,127,164) ;
+}
+.todo__func_del:hover {
+    cursor: pointer;
+	background-color:rgb(206, 84, 121) ;
+}
+.todo__func_del:before {
+    content:'';
+    display:inline-block;
+    width:60%;
+    height: 60%;
+    border-top: 2px solid black;
+    transform: translateY(70%) translateX(30%);
+}
+.todo__func_isDone:before {
+    content:'';
+    display:inline-block;
+    width:5%;
+    height: 50%;
+    border-left: 2px solid black;
+    transform: rotate(45deg);
+    position: relative;
+    left: 65%;
+    top: 20%;
+}
+
+.todo__func_isDone:after {
+    content:'';
+    display:inline-block;
+    width:5%;
+    height: 50%;
+    border-left: 2px solid black;
+    transform: rotate(-45deg);
+    position: relative;
+    right: -18%;
+    top:15%;
+}
+.todo__func_isDone.mark {
+    background-color: rgb(80,227,164);
 }

@@ -1,0 +1,11 @@
+.form-add {
+    display:flex;
+    justify-content: space-around;
+    padding: 0.5rem 0; 
+}
+.form-add__submit {
+    cursor:pointer
+}
+.form-add__submit:hover {
+    background-color:rgb(80,127,164) ;
+}
