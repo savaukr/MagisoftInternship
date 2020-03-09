@@ -6,6 +6,8 @@ import Context from './context';
 import AddTodo from './components/AddTodo/AddTodo';
 import Filters from './components/Filters/Filters';
 
+import { connect } from 'react-redux';
+
 
 function App() {
   const [todos, setTodos] = useState([
@@ -69,8 +71,12 @@ function App() {
           <TodoList todos={todosFilter} changeIsDone={changeIsDone} />
         </div>
     </Context.Provider>
-
   );
 }
+function mapStateToProps(state) {
+  return {
+    todos: state.todosInfo.todos
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);

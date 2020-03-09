@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './filters.css';
 
 const Filters = (props) => {
@@ -19,4 +20,7 @@ const Filters = (props) => {
             <button className="filters__tomorrow filters_button" onClick={(e)=>clickFilter(e, 'tomorrow')} >tomorrow</button>
         </div>
 )}
+Filters.propTypes ={
+    filterTodos: PropTypes.func.isRequired
+}
 export default Filters;
