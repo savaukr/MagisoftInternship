@@ -1,0 +1,18 @@
+.todo__date {
+    width:100%;
+	display: flex;
+	justify-content: space-around;
+	align-items:center;
+	padding: 1.5rem 0;
+	color:white;
+	background-color: rgb(80,227,164);
+	border-radius: 7px 7px 0 0;
+}
+.todo__dateMonthYear {
+    display: flex;
+    align-items:center;
+}
+.todo__dt {
+	font-size: 2rem;
+	padding-right: 0.2rem;
+}
