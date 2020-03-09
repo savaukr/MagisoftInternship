@@ -75,7 +75,9 @@ function App() {
 }
 function mapStateToProps(state) {
   return {
-    todos: state.todosInfo.todos
+    todosredux: state.infoTodos.todos,
+    todosFilterRedux: state.infoTodos.todosFilter,
+    objFilters :state.infoTodos.objFilters
   }
 }
 
