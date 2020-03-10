@@ -7,9 +7,15 @@ const initialState = {
         {id:"1", title:'first task', createDate: new Date(), dueDate:'2020-05-06', isDone:true },
         {id:"2", title:'tommorow', createDate: new Date(), dueDate:'2020-03-10', isDone:false },
     ],
-objFilters:{noneFinished:false, outDated:false, tomorrow:false }
+    objFilters:{noneFinished:false, outDated:false, tomorrow:false }
 } 
 
-export default  function todosInfo (state = initialState) {
+export default  function infoTodos (state = initialState, action) {
+    switch (action.type) {
+        case "SET_ISDONE":
+            return {...state, todos}
+        default: 
+            return state
+    }
     return state;
 }
