@@ -12,8 +12,8 @@ const initialState = {
 
 export default  function infoTodos (state = initialState, action) {
     switch (action.type) {
-        case "SET_ISDONE":
-            return {...state}
+        case "CHANGE_ISDONE":
+            return {...state, todos:action.payload }
         default: 
             return state
     }
