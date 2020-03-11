@@ -18,6 +18,7 @@ const TodoList = (props) => {
                 <Todo 
                     key={todo.id}
                     changeIsDone={props.changeIsDone}
+                    todos={todos}
                     todo={todo}
                 />
             ))}

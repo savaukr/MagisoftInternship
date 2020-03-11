@@ -7,6 +7,7 @@ import Context from '../../../context'
 const Todo = (props) => {
     const {removeTodo} = useContext(Context);
     const {todo ={}} = props;
+    const [...todos] = props.todos
     const changeIsDone = props.changeIsDone;
     return (
         <li className="todo"
@@ -19,7 +20,7 @@ const Todo = (props) => {
                 <span className="todo__func_del" onClick={()=>removeTodo(todo.id)}></span>
                 <span
                      className={todo.isDone === false ? "todo__func_isDone":"todo__func_isDone mark"}
-                     onClick={()=>{changeIsDone(todo.id)}}>
+                     onClick={()=>{changeIsDone(todos, todo.id)}}>
                 </span>
             </span>
 

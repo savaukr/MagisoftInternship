@@ -7,9 +7,10 @@ import AddTodo from './components/AddTodo/AddTodo';
 import Filters from './components/Filters/Filters';
 
 import { connect } from 'react-redux';
+import changeIsDoneAction from './actions/actionIsDone.js'
 
 
-function App() {
+function App(props) {
   const [todos, setTodos] = useState([
     {id:"1", title:'first task', createDate: new Date(), dueDate:'2020-05-06', isDone:true },
     {id:"2", title:'tommorow', createDate: new Date(), dueDate:'2020-03-10', isDone:false },
@@ -68,17 +69,26 @@ function App() {
           <Header/>
           <AddTodo createTodo={addTodo} />
           <Filters filterTodos = {filterTodos}/>
-          <TodoList todos={todosFilter} changeIsDone={changeIsDone} />
+          
+          <TodoList todos = {props.todosFilterRedux} changeIsDone={props.setIsDoneFunction} />
         </div>
     </Context.Provider>
   );
 }
 function mapStateToProps(state) {
   return {
-    todosredux: state.infoTodos.todos,
+    todosRedux: state.infoTodos.todos,
     todosFilterRedux: state.infoTodos.todosFilter,
-    objFilters :state.infoTodos.objFilters
+    objFiltersRedux :state.infoTodos.objFilters
   }
 }
 
-export default connect(mapStateToProps)(App);
+function mapDispatchToProps(dispatch) {
+  return {
+    setIsDoneFunction: (todos, id) => {
+      dispatch(changeIsDoneAction(todos,id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

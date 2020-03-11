@@ -13,7 +13,7 @@ const initialState = {
 export default  function infoTodos (state = initialState, action) {
     switch (action.type) {
         case "SET_ISDONE":
-            return {...state, todos}
+            return {...state}
         default: 
             return state
     }
