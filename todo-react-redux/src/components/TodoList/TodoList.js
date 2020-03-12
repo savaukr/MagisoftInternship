@@ -4,6 +4,8 @@ import Todo from './Todo/Todo';
 import './todoList.css';
 
 const TodoList = (props) => {
+    //console.log(props);
+    
     const {todos=[]} = props;
     if (!todos.length) return <p>Список завдань пустий</p>
     else 
@@ -17,6 +19,7 @@ const TodoList = (props) => {
             {todos.map((todo, index)=>(
                 <Todo 
                     key={todo.id}
+                    removeTodo = {props.removeTodo}
                     changeIsDone={props.changeIsDone}
                     todos={todos}
                     todo={todo}

@@ -2,12 +2,12 @@ import React , {useState} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
 import TodoList from './components/TodoList/TodoList';
-import Context from './context';
 import AddTodo from './components/AddTodo/AddTodo';
 import Filters from './components/Filters/Filters';
 
 import { connect } from 'react-redux';
-import changeIsDoneAction from './actions/actionIsDone.js'
+import {changeIsDoneAction} from './actions/actions.js';
+import {removeTodoAction} from './actions/actions.js';
 
 
 function App(props) {
@@ -64,15 +64,16 @@ function App(props) {
 }
 
   return (
-    <Context.Provider value={{removeTodo: removeTodo}}>
         <div className="todos-wrapper">
           <Header/>
           <AddTodo createTodo={addTodo} />
           <Filters filterTodos = {filterTodos}/>
-          
-          <TodoList todos = {props.todosFilterRedux} changeIsDone={props.setIsDoneFunction} />
+          <TodoList 
+            todos = {props.todosFilterRedux}
+            changeIsDone={props.setIsDoneFunction}
+            removeTodo = {props.removeTodoFunction}
+           />
         </div>
-    </Context.Provider>
   );
 }
 function mapStateToProps(state) {
@@ -87,6 +88,9 @@ function mapDispatchToProps(dispatch) {
   return {
     setIsDoneFunction: (todos, id) => {
       dispatch(changeIsDoneAction(todos,id))
+    },
+    removeTodoFunction: (todos, id) => {
+      dispatch(removeTodoAction(todos, id))
     }
   }
 }
