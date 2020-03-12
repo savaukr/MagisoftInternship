@@ -5,7 +5,7 @@ const initialState = {
     ],       
     objFilters:{noneFinished:false, outDated:false, tomorrow:false }
 } 
-initialState.todosFilter = [].concat(initialState.todos);
+initialState.todosFilter = [...initialState.todos];
 
 
 export default  function infoTodos (state = initialState, action) {

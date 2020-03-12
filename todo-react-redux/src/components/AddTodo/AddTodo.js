@@ -2,16 +2,13 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './addTodo.css';
 
-const AddTodo = (props)=> {
+const AddTodo = ({todos, createTodo})=> {
     const [title, setTitle] = useState('');
     const [dueDate, setDueDate] = useState('');
     const submitTodo = (event)=>{
         event.preventDefault();
-        //const dayInMls = 24*60*60*1000;
-        //let defaultDueDate = new Date(new Date().getTime() + dayInMls);
-        //defaultDueDate = dueDate ?  dueDate: `${defaultDueDate.getFullYear()}-${defaultDueDate.getMonth()+1}-${defaultDueDate.getDate()}`;
         if (title.trim() && dueDate) {
-            props.createTodo(props.todos, title, dueDate);
+            createTodo(todos, title, dueDate);
             setTitle('');
             setDueDate('');
         }
@@ -24,7 +21,10 @@ const AddTodo = (props)=> {
         </form>
     )
 }
+
 AddTodo.propTypes ={
+    todos: PropTypes.array,
     createTodo: PropTypes.func.isRequired
 }
+
 export default AddTodo;

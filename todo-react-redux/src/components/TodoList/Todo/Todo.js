@@ -2,13 +2,7 @@ import React from 'react';
 import './todo.css';
 import PropTypes from 'prop-types';
 
-
-
-const Todo = (props) => {
-    const removeTodo = props.removeTodo;
-    const {todo ={}} = props;
-    const [ ...todos] = props.todos
-    const changeIsDone = props.changeIsDone;
+const Todo = ({removeTodo, todos, todo={},changeIsDone }) => {
     return (
         <li className="todo"
             style={{
