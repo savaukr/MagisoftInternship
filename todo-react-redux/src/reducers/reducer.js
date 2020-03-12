@@ -14,6 +14,8 @@ export default  function infoTodos (state = initialState, action) {
             return {...state, todosFilter:action.payload, todos:action.payload };
         case "REMOVE_TODO":
             return {...state, todosFilter:action.payload, todos:action.payload};
+        case "ADD_TODO":
+            return {...state, todosFilter:action.payload, todos:action.payload};
         default: 
             return state;
     }

@@ -18,3 +18,17 @@ export function removeTodoAction(todos, id) {
         payload: copyTodos
     }
 }
+export function addTodoAction(todos, title, dueDate) {
+	let [...copyTodos] = todos;
+	let id = copyTodos.length ? +copyTodos[copyTodos.length-1].id+1 : 1;
+    id = id.toString();
+    copyTodos.push({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false})
+    //setTodos(todos.concat([{id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false}]));
+    //Скид фільтрів після додавання нової справи
+    //removeActiveClass('filters_button');
+    //setObjFilters({noneFinished:false, outDated:false, tomorrow:false });
+    return {
+        type: "ADD_TODO",
+        payload: copyTodos
+    }
+}

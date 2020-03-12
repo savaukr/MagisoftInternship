@@ -8,6 +8,7 @@ import Filters from './components/Filters/Filters';
 import { connect } from 'react-redux';
 import {changeIsDoneAction} from './actions/actions.js';
 import {removeTodoAction} from './actions/actions.js';
+import {addTodoAction} from './actions/actions.js';
 
 
 function App(props) {
@@ -32,6 +33,7 @@ function App(props) {
       return todo;
     }))
   }
+
   const removeTodo = (id, arr = [].concat(todos)) => {
     setTodos(arr.filter(todo=>todo.id !== id));
     setTodosFilter(arr.filter(todo=>todo.id !== id))
@@ -66,7 +68,10 @@ function App(props) {
   return (
         <div className="todos-wrapper">
           <Header/>
-          <AddTodo createTodo={addTodo} />
+          <AddTodo
+            todos = {props.todosFilterRedux}
+            createTodo={props.addTodoFunction}
+          />
           <Filters filterTodos = {filterTodos}/>
           <TodoList 
             todos = {props.todosFilterRedux}
@@ -91,6 +96,9 @@ function mapDispatchToProps(dispatch) {
     },
     removeTodoFunction: (todos, id) => {
       dispatch(removeTodoAction(todos, id))
+    },
+    addTodoFunction: (todos, title, dueDate) => {
+      dispatch(addTodoAction(todos, title,dueDate))
     }
   }
 }

@@ -11,7 +11,7 @@ const AddTodo = (props)=> {
         //let defaultDueDate = new Date(new Date().getTime() + dayInMls);
         //defaultDueDate = dueDate ?  dueDate: `${defaultDueDate.getFullYear()}-${defaultDueDate.getMonth()+1}-${defaultDueDate.getDate()}`;
         if (title.trim() && dueDate) {
-            props.createTodo(title, dueDate);
+            props.createTodo(props.todos, title, dueDate);
             setTitle('');
             setDueDate('');
         }
