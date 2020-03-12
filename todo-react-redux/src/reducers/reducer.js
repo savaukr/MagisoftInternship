@@ -15,7 +15,9 @@ export default  function infoTodos (state = initialState, action) {
         case "REMOVE_TODO":
             return {...state, todosFilter:action.payload, todos:action.payload};
         case "ADD_TODO":
-            return {...state, todosFilter:action.payload, todos:action.payload};
+            return {...state, todosFilter:action.payload.copyTodos, todos:action.payload.copyTodos, objFilters: action.payload.objFilters};
+        case "FILTER_TODOS":
+            return {...state, objFilters: action.payload.copyFilters, todosFilter: action.payload.copyTodos}
         default: 
             return state;
     }

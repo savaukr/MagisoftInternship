@@ -2,16 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './filters.css';
 
-const Filters = (props) => {
-    //const [objFilters, setObjFilters] = useState({noneFinished:false, outDated:false, tomorrow:false });
-    //let objFilters = props.objFilters;
-    let filterTodos = props.filterTodos;
+const Filters = ({todos, objFilters, filterTodos}) => {
     function clickFilter(e, nameFilter) {
         e.target.classList.toggle('active'); 
-        //let {...obj} = filters;
-        //obj[nameFilter] = !obj[nameFilter];
-        //setObjFilters(obj);
-        filterTodos(nameFilter);
+        filterTodos(todos, objFilters, nameFilter);
     }
     return (
         <div className="filters">

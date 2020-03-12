@@ -28,7 +28,6 @@ const TodoList = ({todos=[], removeTodo, changeIsDone}) => {
 
 TodoList.propTypes =  {
     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    todo: PropTypes.object.isRequired,
     changeIsDone: PropTypes.func.isRequired,
     removeTodo: PropTypes.func.isRequired
 }
