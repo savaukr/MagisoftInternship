@@ -1,15 +1,15 @@
 import React  from 'react';
 import './App.css';
-import Header from './components/Header/Header';
-import TodoList from './components/TodoList/TodoList';
-import AddTodo from './components/AddTodo/AddTodo';
-import Filters from './components/Filters/Filters';
+import Header from '../components/Header/Header';
+import TodoList from '../components/TodoList/TodoList';
+import AddTodo from '../components/AddTodo/AddTodo';
+import Filters from '../components/Filters/Filters';
 
 import { connect } from 'react-redux';
-import {changeIsDoneAction} from './actions/actions.js';
-import {removeTodoAction} from './actions/actions.js';
-import {addTodoAction} from './actions/actions.js';
-import {filterTodosAction} from './actions/actions.js';
+import {changeIsDoneAction} from '../actions/actions.js';
+import {removeTodoAction} from '../actions/actions.js';
+import {addTodoAction} from '../actions/actions.js';
+import {filterTodosAction} from '../actions/actions.js';
 
 
 function App(props) {
