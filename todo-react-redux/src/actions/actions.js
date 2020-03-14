@@ -1,3 +1,8 @@
+export  const CHANGE_ISDONE =  "CHANGE_ISDONE";
+export const REMOVE_TODO = "REMOVE_TODO";
+export const ADD_TODO = "ADD_TODO";
+export const FILTER_TODOS = "FILTER_TODOS";
+
 export function changeIsDoneAction(todos, id) {
 	let [...copyTodos] = todos;
 	for(let todo of copyTodos) {
@@ -6,7 +11,7 @@ export function changeIsDoneAction(todos, id) {
 		}
 	}
     return {
-        type: "CHANGE_ISDONE",
+        type: CHANGE_ISDONE,
         payload: copyTodos
     }
 }
@@ -14,7 +19,7 @@ export function changeIsDoneAction(todos, id) {
 export function removeTodoAction(todos, id) {
 	let copyTodos = todos.filter(todo=>todo.id !== id)
     return {
-        type: "REMOVE_TODO",
+        type: REMOVE_TODO,
         payload: copyTodos
     }
 }
@@ -35,7 +40,7 @@ export function addTodoAction(todos, title, dueDate) {
     let objFilters = { noneFinished:false, outDated:false, tomorrow:false };
     
     return {
-        type: "ADD_TODO",
+        type: ADD_TODO,
         payload: {copyTodos, objFilters}
     }
 }
@@ -53,7 +58,7 @@ export function filterTodosAction(todos, objFilters, nameFilter) {
       ( ( new Date(todo.dueDate).getTime() < new Date().getTime()+dayInMls ) && ( new Date(todo.dueDate).getTime() > new Date() ))
     )
     return {
-        type: "FILTER_TODOS",
+        type: FILTER_TODOS,
         payload: {copyTodos, copyFilters}
     }
 }
