@@ -4,7 +4,7 @@ var fs = require("fs");
 var app = express();
 var jsonParser = bodyParser.json();
  
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/dist"));
 
 // отримання списку справ
 app.get("/api/todos", function(req, res){

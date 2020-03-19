@@ -24,6 +24,20 @@ export function removeTodoAction(todos, id) {
     }
 }
 export function addTodoAction(todos, title, dueDate) {
+  /*
+   async function createTodo(todo) {
+    let url='/api/todos';
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },body: JSON.stringify(todo)});
+    let result = await response.json();
+    console.log(result);
+    return result;
+}
+*/
+
 	let [...copyTodos] = todos;
 	let id = copyTodos.length ? +copyTodos[copyTodos.length-1].id+1 : 1;
     id = id.toString();
@@ -38,7 +52,7 @@ export function addTodoAction(todos, title, dueDate) {
     //Скид фільтрів після додавання нової справи
     removeActiveClass('filters_button');
     let objFilters = { noneFinished:false, outDated:false, tomorrow:false };
-    
+    //createTodo({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
     return {
         type: ADD_TODO,
         payload: {copyTodos, objFilters}
