@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Todo  from './Todo/Todo';
 import './todoList.css';
 
+
 const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeIsDone, readJson}) => {
     let isFilter = false;
     for (let f in objFilters) {
