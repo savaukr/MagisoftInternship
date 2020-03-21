@@ -2,7 +2,7 @@ import React from 'react';
 import './todo.css';
 import PropTypes from 'prop-types';
 
-const Todo = ({removeTodo, todos, todo, changeIsDone }) => {
+const Todo = ({ todos, todo, changeIsDone, removeTodo }) => {
     return (
         <li className="todo"
             style={{

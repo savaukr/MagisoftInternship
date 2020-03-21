@@ -1,14 +1,30 @@
-export  const CHANGE_ISDONE =  "CHANGE_ISDONE";
-export const REMOVE_TODO = "REMOVE_TODO";
-export const ADD_TODO = "ADD_TODO";
-export const FILTER_TODOS = "FILTER_TODOS";
+import { CHANGE_ISDONE, REMOVE_TODO, ADD_TODO, FILTER_TODOS, READ_JSON_SUCCESS, READ_JSON_REQUEST, READ_JSON_FAILURE } from '../types/actionsTypes.js';
+import axios from  'axios';
+import todoApi from '../todoApi/todoApi.js';
+
+export const readJsonActionRequest = () => ({type: READ_JSON_REQUEST});
+export const readJsonActionFailure = () => ({ type: READ_JSON_FAILURE})
+export const readJsonActionSuccess = (data) => ({
+    type:READ_JSON_SUCCESS,
+    payload: data
+});
+
+
+export const readJson = () => dispatch => {
+    dispatch(readJsonActionRequest());
+    axios.get('/api/todos')
+        .then(response => dispatch(readJsonActionSuccess(response.data)))
+        .catch(error => dispatch(readJsonActionFailure(error) ))
+}
 
 export function changeIsDoneAction(todos, id) {
 	let [...copyTodos] = todos;
 	for(let todo of copyTodos) {
 		if (todo.id === id) {
 			todo.isDone = !todo.isDone;
+            todoApi.changeTodo(todo);
 		}
+
 	}
     return {
         type: CHANGE_ISDONE,
@@ -17,27 +33,14 @@ export function changeIsDoneAction(todos, id) {
 }
 
 export function removeTodoAction(todos, id) {
-	let copyTodos = todos.filter(todo=>todo.id !== id)
+	let copyTodos = todos.filter(todo=>todo.id !== id);
+    todoApi.deleteTodo(id);
     return {
         type: REMOVE_TODO,
         payload: copyTodos
     }
 }
 export function addTodoAction(todos, title, dueDate) {
-  /*
-   async function createTodo(todo) {
-    let url='/api/todos';
-    let response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },body: JSON.stringify(todo)});
-    let result = await response.json();
-    console.log(result);
-    return result;
-}
-*/
-
 	let [...copyTodos] = todos;
 	let id = copyTodos.length ? +copyTodos[copyTodos.length-1].id+1 : 1;
     id = id.toString();
@@ -51,8 +54,9 @@ export function addTodoAction(todos, title, dueDate) {
     }
     //Скид фільтрів після додавання нової справи
     removeActiveClass('filters_button');
+    todoApi.saveTodoToFile({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
     let objFilters = { noneFinished:false, outDated:false, tomorrow:false };
-    //createTodo({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
+
     return {
         type: ADD_TODO,
         payload: {copyTodos, objFilters}

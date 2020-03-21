@@ -1,0 +1,8 @@
+export const CHANGE_ISDONE =  "CHANGE_ISDONE";
+export const REMOVE_TODO = "REMOVE_TODO";
+export const ADD_TODO = "ADD_TODO";
+export const FILTER_TODOS = "FILTER_TODOS";
+
+export const READ_JSON_SUCCESS = "READ_JSON_SUCCESS";
+export const READ_JSON_REQUEST = "READ_JSON_REQUEST";
+export const READ_JSON_FAILURE = "READ_JSON_FAILURE";

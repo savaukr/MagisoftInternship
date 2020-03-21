@@ -14,6 +14,7 @@ const Filters = ({todos, objFilters, filterTodos}) => {
             <button className="filters__tomorrow filters_button" onClick={(e)=>clickFilter(e, 'tomorrow')} >tomorrow</button>
         </div>
 )}
+    
 Filters.propTypes ={
     filterTodos: PropTypes.func.isRequired
 }

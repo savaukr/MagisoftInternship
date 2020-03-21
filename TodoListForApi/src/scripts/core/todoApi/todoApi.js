@@ -1,4 +1,4 @@
-async function getTodos() {
+﻿async function getTodos() {
     let url='/api/todos';
     let response = await fetch(url);
     let result = await response.json();
