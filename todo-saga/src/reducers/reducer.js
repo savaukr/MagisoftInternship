@@ -31,6 +31,7 @@ const  infoTodos =  (state = initialState, action) => {
             };
         case READ_JSON_FAILURE:
             return { 
+                ...state
                 isLoding: false,
                 isError: true
             };
