@@ -16,3 +16,14 @@ function sayMyName(name) {
     console.log(name);
 }
 sayMyName('Huizinberg');
+function myError(message) {
+    throw new Error(message);
+}
+var login = 'admin';
+var rect2 = {
+    id: '123445',
+    size: {
+        width: 10,
+        height: 5
+    }
+};
