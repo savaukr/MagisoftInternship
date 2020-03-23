@@ -27,3 +27,14 @@ var rect2 = {
         height: 5
     }
 };
+var rect5 = {
+    id: '1234',
+    size: {
+        width: 20,
+        height: 20
+    },
+    getArea: function () {
+        return this.size.width * this.size.height;
+    }
+};
+console.log(rect5.getArea());

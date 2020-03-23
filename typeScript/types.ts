@@ -22,7 +22,7 @@ sayMyName('Huizinberg');
 function myError (message:string): never {
     throw new Error(message);
 }
-type login = string
+type Login = string
 const login: Login = 'admin'
 
 type SomeType = string|null|undefined
@@ -43,3 +43,19 @@ const rect2: Rect = {
         height: 5
     }
 }
+
+interface rectWithArea extends Rect {
+    getArea: ()=> number
+}
+
+const rect5: rectWithArea = {
+    id: '1234',
+    size: {
+        width: 20,
+        height: 20
+    },
+    getArea():number {
+        return this.size.width*this.size.height
+    }
+}
+console.log(rect5.getArea())
