@@ -1,4 +1,8 @@
-import { CHANGE_ISDONE, REMOVE_TODO, ADD_TODO, FILTER_TODOS, READ_JSON_SUCCESS, READ_JSON_REQUEST, READ_JSON_FAILURE } from '../types/actionsTypes.js';
+import { 
+ READ_JSON_REQUEST, READ_JSON_FAILURE, READ_JSON_SUCCESS,
+ CHANGE_TODO_REQUEST, CHANGE_TODO_FAILURE, CHANGE_TODO_SUCCESS,
+ REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
+ ADD_TODO, FILTER_TODOS } from '../types/actionsTypes.js';
 
 const initialState = {
     todos: [
@@ -35,18 +39,73 @@ const  infoTodos =  (state = initialState, action) => {
                 isLoding: false,
                 isError: true
             };
+        case  REMOVE_TODO_REQUEST:
+            return {
+                ...state,
+                isLoding: true,
+                isError: false
+            };
+        case REMOVE_TODO_SUCCESS: 
+            let copyTodos = state.todos.filter(todo=> +todo.id !== action.payload);
+            let copyTodosFilter = state.todosFilter.filter(todo=> +todo.id !== action.payload);
+            return {
+                 ...state,
+                todos: copyTodos,
+                todosFilter: copyTodosFilter,
+                isLoding: false,
+                isError: false
+            }
+        case REMOVE_TODO_FAILURE:
+            return {
+                 ...state,
+                isLoding: false,
+                isError: true
+            } 
+        case CHANGE_TODO_REQUEST:
+            return {
+                ...state,
+                isLoding: true,
+                isError: false
+            };
+        case CHANGE_TODO_SUCCESS: 
+            copyTodos = state.todos.map(todo => {
+                if (todo.id == action.payload.id) return action.payload;
+                return todo;
+            });
+            copyTodosFilter = state.todosFilter.map(todo => {
+                if (todo.id == action.payload.id) return action.payload;
+                return todo;
+            });
+            return {
+                 ...state,
+                todos: copyTodos,
+                todosFilter: copyTodosFilter,
+                isLoding: false,
+                isError: false
+            }
+        case CHANGE_TODO_FAILURE:
+            return {
+                 ...state,
+                isLoding: false,
+                isError: true
+            } 
+
+        /*
         case CHANGE_ISDONE:
             return {
                 ...state,
                 todosFilter:action.payload,
                 todos:action.payload
             };
+         */
+            /*
         case REMOVE_TODO:
             return {
                 ...state,
                 todosFilter:action.payload,
                 todos:action.payload
             };
+            */
         case ADD_TODO:
             return {
                 ...state,

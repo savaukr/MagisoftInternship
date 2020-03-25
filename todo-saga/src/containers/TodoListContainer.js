@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList/TodoList.js';
-import {changeIsDoneAction, removeTodoAction, readJson} from '../actions/actions.js';
+import {readJson, changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions.js';
 
 const TodoListContainer = props => {
 	return <TodoList {...props} />
@@ -18,11 +18,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeIsDone: (todos, id) => {
-          dispatch(changeIsDoneAction(todos,id))
+        changeTodo: (todo) => {
+          dispatch(changeTodoDispatchAction(todo, true ))
         },
-        removeTodo: (todos, id) => {
-          dispatch(removeTodoAction(todos, id))
+        removeTodo: (id) => {
+          dispatch(removeTodoDispatchAction(id))
         },
         readJson: () => dispatch(readJson())
     }

@@ -4,7 +4,7 @@ import Todo  from './Todo/Todo';
 import './todoList.css';
 
 
-const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeIsDone, readJson}) => {
+const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo, readJson}) => {
     let isFilter = false;
     for (let f in objFilters) {
         if (objFilters[f]) {
@@ -12,7 +12,7 @@ const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeIsDon
             break;
         }
     }
-    if (!todos.length) return (
+    if ( !todos.length) return (
         <>
             <p>Список завдань пустий</p>
             {(!isFilter && !todos.length) ?  <button onClick={readJson}>Load data</button>  : '' }
@@ -33,7 +33,7 @@ const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeIsDon
                                     <Todo 
                                         key={todo.id}
                                         removeTodo = {removeTodo}
-                                        changeIsDone={changeIsDone}
+                                        changeTodo={changeTodo}
                                         todos = {todos}
                                         todo={todo}
                                     />

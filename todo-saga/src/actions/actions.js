@@ -1,22 +1,59 @@
-import { CHANGE_ISDONE, REMOVE_TODO, ADD_TODO, FILTER_TODOS, READ_JSON_SUCCESS, READ_JSON_REQUEST, READ_JSON_FAILURE } from '../types/actionsTypes.js';
+import {  
+        READ_JSON_REQUEST, READ_JSON_FAILURE, READ_JSON_SUCCESS,
+        REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
+        CHANGE_TODO_REQUEST, CHANGE_TODO_FAILURE, CHANGE_TODO_SUCCESS,
+        ADD_TODO, FILTER_TODOS } from '../types/actionsTypes.js';
+
 import axios from  'axios';
 import todoApi from '../todoApi/todoApi.js';
 
+//read from <file>.json
 export const readJsonActionRequest = () => ({type: READ_JSON_REQUEST});
 export const readJsonActionFailure = () => ({ type: READ_JSON_FAILURE})
 export const readJsonActionSuccess = (data) => ({
     type:READ_JSON_SUCCESS,
     payload: data
 });
-
-
 export const readJson = () => dispatch => {
     dispatch(readJsonActionRequest());
     axios.get('/api/todos')
         .then(response => dispatch(readJsonActionSuccess(response.data)))
         .catch(error => dispatch(readJsonActionFailure(error) ))
 }
+// remove Todo
+export const removeTodoActionRequest = () => ({ type: REMOVE_TODO_REQUEST })
+export const removeTodoActionFailure = () => ({ type: REMOVE_TODO_FAILURE })
+export const removeTodoActionSuccess = (id) => ({
+        type: REMOVE_TODO_SUCCESS,
+        payload: id
+});
+export const removeTodoDispatchAction = (id) => dispatch => {
+    dispatch(removeTodoActionRequest());
+    axios.delete('/api/todos/'+id)
+        .then(response => dispatch( removeTodoActionSuccess(response.data.id) ))
+        .catch(error => dispatch( removeTodoActionFailure(error) ))
+}
+//change Todo
+export const changeTodoActionRequest = () => ({ type: CHANGE_TODO_REQUEST })
+export const changeTodoActionFailure = () => ({ type: CHANGE_TODO_FAILURE })
+export const changeTodoActionSuccess = (todo) => ({
+        type: CHANGE_TODO_SUCCESS,
+        payload: todo
+});
+const helpChangeTodo = (todo, isChangeDone, changedDueDate ) => {
+    let { ...copyTodo} = todo;
+    if (changedDueDate) copyTodo.dueDate = changedDueDate;
+    if ( isChangeDone ) copyTodo.isDone = !copyTodo.isDone;
+    return copyTodo;
+}
+export const changeTodoDispatchAction = (todo, isChangeDone=false, changedDueDate = undefined) =>dispatch => {
+    dispatch(changeTodoActionRequest());
+    axios.put('/api/todos', helpChangeTodo(todo, isChangeDone))
+        .then(response => dispatch( changeTodoActionSuccess(response.data) ))
+        .catch(error => dispatch( changeTodoActionFailure(error) ))
+}
 
+/*
 export function changeIsDoneAction(todos, id) {
 	let [...copyTodos] = todos;
 	for(let todo of copyTodos) {
@@ -31,7 +68,8 @@ export function changeIsDoneAction(todos, id) {
         payload: copyTodos
     }
 }
-
+*/
+/*
 export function removeTodoAction(todos, id) {
 	let copyTodos = todos.filter(todo=>todo.id !== id);
     todoApi.deleteTodo(id);
@@ -40,20 +78,12 @@ export function removeTodoAction(todos, id) {
         payload: copyTodos
     }
 }
+*/
 export function addTodoAction(todos, title, dueDate) {
 	let [...copyTodos] = todos;
 	let id = copyTodos.length ? +copyTodos[copyTodos.length-1].id+1 : 1;
     id = id.toString();
     copyTodos.push({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
-
-    function removeActiveClass(classElements) {
-        let elements = document.querySelectorAll(`.${classElements}`);
-        for (let i=0; i<elements.length; i++) {
-          elements[i].classList.remove('active');
-        }
-    }
-    //Скид фільтрів після додавання нової справи
-    removeActiveClass('filters_button');
     todoApi.saveTodoToFile({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
     let objFilters = { noneFinished:false, outDated:false, tomorrow:false };
 

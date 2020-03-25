@@ -1,17 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './filters.css';
+import cn from 'classnames';
 
 const Filters = ({todos, objFilters, filterTodos}) => {
-    function clickFilter(e, nameFilter) {
-        e.target.classList.toggle('active'); 
+    function clickFilter(e, nameFilter) { 
         filterTodos(todos, objFilters, nameFilter);
     }
+    const  btnNoneFinishedClass = cn({
+        'filters_button': true,
+        'active': objFilters['noneFinished']
+    })
+    const btnOutDAteddClass = cn({
+        'filters_button': true,
+        'active': objFilters['outDated']
+    })
+    const btnTomorrowClass = cn({
+        'filters_button': true,
+        'active': objFilters['tomorrow']
+    })
+    
     return (
         <div className="filters">
-            <button className="filters__not-finished filters_button" onClick={(e)=>clickFilter(e,  'noneFinished')} >not finished</button>
-            <button className="filters__out-dated filters_button" onClick={(e)=>clickFilter(e, 'outDated')} >out dated</button>
-            <button className="filters__tomorrow filters_button" onClick={(e)=>clickFilter(e, 'tomorrow')} >tomorrow</button>
+            <button className={btnNoneFinishedClass} onClick={(e)=>clickFilter(e,  'noneFinished')} >not finished</button>
+            <button className={btnOutDAteddClass} onClick={(e)=>clickFilter(e, 'outDated')} >out dated</button>
+            <button className={btnTomorrowClass} onClick={(e)=>clickFilter(e, 'tomorrow')} >tomorrow</button>
         </div>
 )}
     
