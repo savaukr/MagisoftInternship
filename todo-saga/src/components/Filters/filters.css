@@ -14,14 +14,3 @@
 .filters_button.active, .filters_button:hover {
       background-color: rgb(40,157,154);
 }
-/*
-.filters__not-finished.active, .filters__not-finished:hover {
-        background-color: rgb(40,157,154);
-}
-.filters__out-dated.active, .filters__out-dated:hover {
-    background-color: rgb(40,157,154);
-}
-.filters__tomorrow.active, .filters__tomorrow:hover {
-    background-color: rgb(40,157,154);
-}
-*/

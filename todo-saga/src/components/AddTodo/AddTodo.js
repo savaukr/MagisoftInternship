@@ -2,13 +2,14 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './addTodo.css';
 
-const AddTodo = ({todos, createTodo})=> {
+const AddTodo = ({createTodo})=> {
     const [title, setTitle] = useState('');
     const [dueDate, setDueDate] = useState('');
+    const todo = {title:title, createDate: new Date(), dueDate:dueDate, isDone:false}
     const submitTodo = (event)=>{
         event.preventDefault();
         if (title.trim() && dueDate) {
-            createTodo(todos, title, dueDate);
+            createTodo(todo);
             setTitle('');
             setDueDate('');
         }

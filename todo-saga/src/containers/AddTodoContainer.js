@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import AddTodo from '../components/AddTodo/AddTodo.js';
-import { addTodoAction } from '../actions/actions.js';
+import { addTodoDispatchAction } from '../actions/actions.js';
 
 const AddTodoContainer = props => {
 	return <AddTodo {...props} />
@@ -10,14 +10,14 @@ const AddTodoContainer = props => {
 
 const mapStateToProps = (state) => {
     return {
-        todos: state.infoTodos.todosFilter
+        //todos: state.infoTodos.todos
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createTodo: (todos, title, dueDate) => {
-          dispatch(addTodoAction(todos, title, dueDate))
+        createTodo: (todo) => {
+          dispatch(addTodoDispatchAction(todo))
         }
     }
 }

@@ -2,7 +2,8 @@ import {
         READ_JSON_REQUEST, READ_JSON_FAILURE, READ_JSON_SUCCESS,
         REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
         CHANGE_TODO_REQUEST, CHANGE_TODO_FAILURE, CHANGE_TODO_SUCCESS,
-        ADD_TODO, FILTER_TODOS } from '../types/actionsTypes.js';
+        ADD_TODO_REQUEST, ADD_TODO_FAILURE, ADD_TODO_SUCCESS,
+        FILTER_TODOS } from '../types/actionsTypes.js';
 
 import axios from  'axios';
 import todoApi from '../todoApi/todoApi.js';
@@ -53,6 +54,21 @@ export const changeTodoDispatchAction = (todo, isChangeDone=false, changedDueDat
         .catch(error => dispatch( changeTodoActionFailure(error) ))
 }
 
+//add Todo
+export const addTodoActionRequest = () => ({ type: ADD_TODO_REQUEST })
+export const addTodoActionFailure = () => ({ type: ADD_TODO_FAILURE })
+export const addTodoActionSuccess = (todo) => ({
+        type: ADD_TODO_SUCCESS,
+        payload: todo
+});
+
+export const addTodoDispatchAction = (todo) =>dispatch => {
+    dispatch(addTodoActionRequest());
+    axios.post('/api/todos', todo )
+        .then( response => dispatch( addTodoActionSuccess(response.data) ))
+        .catch( error => dispatch( addTodoActionFailure(error) ))
+}
+
 /*
 export function changeIsDoneAction(todos, id) {
 	let [...copyTodos] = todos;
@@ -79,6 +95,7 @@ export function removeTodoAction(todos, id) {
     }
 }
 */
+/*
 export function addTodoAction(todos, title, dueDate) {
 	let [...copyTodos] = todos;
 	let id = copyTodos.length ? +copyTodos[copyTodos.length-1].id+1 : 1;
@@ -92,7 +109,7 @@ export function addTodoAction(todos, title, dueDate) {
         payload: {copyTodos, objFilters}
     }
 }
-
+*/
 export function filterTodosAction(todos, objFilters, nameFilter) {
     let [...copyTodos] = todos;
     const dayInMls = 24*3600*1000;

@@ -2,7 +2,8 @@ import {
  READ_JSON_REQUEST, READ_JSON_FAILURE, READ_JSON_SUCCESS,
  CHANGE_TODO_REQUEST, CHANGE_TODO_FAILURE, CHANGE_TODO_SUCCESS,
  REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
- ADD_TODO, FILTER_TODOS } from '../types/actionsTypes.js';
+ ADD_TODO_REQUEST, ADD_TODO_FAILURE, ADD_TODO_SUCCESS,
+ FILTER_TODOS } from '../types/actionsTypes.js';
 
 const initialState = {
     todos: [
@@ -39,6 +40,32 @@ const  infoTodos =  (state = initialState, action) => {
                 isLoding: false,
                 isError: true
             };
+
+        case ADD_TODO_REQUEST:
+            return {
+                ...state,
+                isLoding: true,
+                isError: false
+            };
+        case ADD_TODO_SUCCESS: 
+            let copyState = {...state };
+            let copyTodos = [...state, copyState.todos.push(action.payload)];
+            let copyTodosFilter = [...state, copyState.todosFilter.push(action.payload)]
+            return {
+                ...state,
+                todosFilter: copyTodosFilter,
+                todos: copyTodos,
+                objFilters: { noneFinished:false, outDated:false, tomorrow:false },
+                isLoding: false,
+                isError: false
+            };
+        case ADD_TODO_FAILURE:
+            return {
+                 ...state,
+                isLoding: false,
+                isError: true
+            } 
+
         case  REMOVE_TODO_REQUEST:
             return {
                 ...state,
@@ -46,8 +73,8 @@ const  infoTodos =  (state = initialState, action) => {
                 isError: false
             };
         case REMOVE_TODO_SUCCESS: 
-            let copyTodos = state.todos.filter(todo=> +todo.id !== action.payload);
-            let copyTodosFilter = state.todosFilter.filter(todo=> +todo.id !== action.payload);
+            copyTodos = state.todos.filter(todo=> +todo.id !== action.payload);
+            copyTodosFilter = state.todosFilter.filter(todo=> +todo.id !== action.payload);
             return {
                  ...state,
                 todos: copyTodos,
@@ -106,13 +133,7 @@ const  infoTodos =  (state = initialState, action) => {
                 todos:action.payload
             };
             */
-        case ADD_TODO:
-            return {
-                ...state,
-                todosFilter:action.payload.copyTodos,
-                todos:action.payload.copyTodos,
-                objFilters: action.payload.objFilters
-            };
+        
         case FILTER_TODOS:
             return {
                 ...state,
