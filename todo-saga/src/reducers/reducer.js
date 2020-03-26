@@ -3,7 +3,7 @@ import {
  CHANGE_TODO_REQUEST, CHANGE_TODO_FAILURE, CHANGE_TODO_SUCCESS,
  REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
  ADD_TODO_REQUEST, ADD_TODO_FAILURE, ADD_TODO_SUCCESS,
- FILTER_TODOS } from '../types/actionsTypes.js';
+ FILTER_TODO_REQUEST, FILTER_TODO_FAILURE, FILTER_TODO_SUCCESS } from '../types/actionsTypes.js';
 
 const initialState = {
     todos: [
@@ -49,8 +49,8 @@ const  infoTodos =  (state = initialState, action) => {
             };
         case ADD_TODO_SUCCESS: 
             let copyState = {...state };
-            let copyTodos = [...state, copyState.todos.push(action.payload)];
-            let copyTodosFilter = [...state, copyState.todosFilter.push(action.payload)]
+            let copyTodos = [ ...copyState.todos, action.payload ];
+            let copyTodosFilter = [ ...copyState.todosFilter, action.payload];
             return {
                 ...state,
                 todosFilter: copyTodosFilter,
@@ -88,6 +88,7 @@ const  infoTodos =  (state = initialState, action) => {
                 isLoding: false,
                 isError: true
             } 
+            
         case CHANGE_TODO_REQUEST:
             return {
                 ...state,
@@ -117,29 +118,38 @@ const  infoTodos =  (state = initialState, action) => {
                 isError: true
             } 
 
-        /*
-        case CHANGE_ISDONE:
+        case FILTER_TODO_REQUEST:
             return {
                 ...state,
-                todosFilter:action.payload,
-                todos:action.payload
+                isLoding: true,
+                isError: false
             };
-         */
-            /*
-        case REMOVE_TODO:
+        case FILTER_TODO_SUCCESS: 
+            [...copyTodos] = state.todos;
+            const dayInMls = 24*3600*1000;
+            let {...copyFilters} = state.objFilters; 
+            copyFilters[action.payload] = !copyFilters[action.payload];
+            if (copyFilters.noneFinished) copyTodos = copyTodos.filter( todo => todo.isDone === false );
+            if (copyFilters.outDated) copyTodos = copyTodos.filter( todo=>
+              ( new Date(todo.dueDate).getTime()+dayInMls ) < ( new Date().getTime() )          
+            );
+            if (copyFilters.tomorrow) copyTodos = copyTodos.filter( todo =>
+              ( ( new Date(todo.dueDate).getTime() < new Date().getTime()+dayInMls ) && ( new Date(todo.dueDate).getTime() > new Date() ))
+            )
             return {
                 ...state,
-                todosFilter:action.payload,
-                todos:action.payload
-            };
-            */
-        
-        case FILTER_TODOS:
-            return {
-                ...state,
-                objFilters: action.payload.copyFilters,
-                todosFilter: action.payload.copyTodos
+                objFilters: copyFilters,
+                todosFilter: copyTodos,
+                isLoding: false,
+                isError: false
             }
+        case FILTER_TODO_FAILURE:
+            return {
+                 ...state,
+                isLoding: false,
+                isError: true
+            } 
+
         default: 
             return state;
     }

@@ -3,7 +3,7 @@ import {
         REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
         CHANGE_TODO_REQUEST, CHANGE_TODO_FAILURE, CHANGE_TODO_SUCCESS,
         ADD_TODO_REQUEST, ADD_TODO_FAILURE, ADD_TODO_SUCCESS,
-        FILTER_TODOS } from '../types/actionsTypes.js';
+        FILTER_TODO_REQUEST, FILTER_TODO_FAILURE, FILTER_TODO_SUCCESS } from '../types/actionsTypes.js';
 
 import axios from  'axios';
 import todoApi from '../todoApi/todoApi.js';
@@ -68,62 +68,20 @@ export const addTodoDispatchAction = (todo) =>dispatch => {
         .then( response => dispatch( addTodoActionSuccess(response.data) ))
         .catch( error => dispatch( addTodoActionFailure(error) ))
 }
+//filter Todos
+export const filterTodoActionRequest = () => ({ type: FILTER_TODO_REQUEST })
+export const filterTodoActionFailure = () => ({ type: FILTER_TODO_FAILURE })
+export const filterTodoActionSuccess = (nameFilter) => ({
+        type: FILTER_TODO_SUCCESS,
+        payload: nameFilter
+});
 
-/*
-export function changeIsDoneAction(todos, id) {
-	let [...copyTodos] = todos;
-	for(let todo of copyTodos) {
-		if (todo.id === id) {
-			todo.isDone = !todo.isDone;
-            todoApi.changeTodo(todo);
-		}
-
-	}
-    return {
-        type: CHANGE_ISDONE,
-        payload: copyTodos
+export const filterTodoDispatchAction = (nameFilter) =>dispatch => {
+    try {
+        dispatch( filterTodoActionRequest());
+        dispatch( filterTodoActionSuccess(nameFilter) );
     }
-}
-*/
-/*
-export function removeTodoAction(todos, id) {
-	let copyTodos = todos.filter(todo=>todo.id !== id);
-    todoApi.deleteTodo(id);
-    return {
-        type: REMOVE_TODO,
-        payload: copyTodos
-    }
-}
-*/
-/*
-export function addTodoAction(todos, title, dueDate) {
-	let [...copyTodos] = todos;
-	let id = copyTodos.length ? +copyTodos[copyTodos.length-1].id+1 : 1;
-    id = id.toString();
-    copyTodos.push({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
-    todoApi.saveTodoToFile({id:id, title:title, createDate: new Date(), dueDate:dueDate, isDone:false});
-    let objFilters = { noneFinished:false, outDated:false, tomorrow:false };
-
-    return {
-        type: ADD_TODO,
-        payload: {copyTodos, objFilters}
-    }
-}
-*/
-export function filterTodosAction(todos, objFilters, nameFilter) {
-    let [...copyTodos] = todos;
-    const dayInMls = 24*3600*1000;
-    let {...copyFilters} = objFilters; 
-    copyFilters[nameFilter] = !copyFilters[nameFilter];
-    if (copyFilters.noneFinished) copyTodos = copyTodos.filter( todo => todo.isDone === false );
-    if (copyFilters.outDated) copyTodos = copyTodos.filter( todo=>
-      ( new Date(todo.dueDate).getTime()+dayInMls ) < ( new Date().getTime() )          
-    );
-    if (copyFilters.tomorrow) copyTodos = copyTodos.filter( todo =>
-      ( ( new Date(todo.dueDate).getTime() < new Date().getTime()+dayInMls ) && ( new Date(todo.dueDate).getTime() > new Date() ))
-    )
-    return {
-        type: FILTER_TODOS,
-        payload: {copyTodos, copyFilters}
+    catch {
+     dispatch( filterTodoActionFailure(new Error('Not filter')) );
     }
 }

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './filters.css';
 import cn from 'classnames';
 
-const Filters = ({todos, objFilters, filterTodos}) => {
+const Filters = ({ filterTodos, objFilters }) => {
     function clickFilter(e, nameFilter) { 
-        filterTodos(todos, objFilters, nameFilter);
+        filterTodos(nameFilter);
     }
     const  btnNoneFinishedClass = cn({
         'filters_button': true,

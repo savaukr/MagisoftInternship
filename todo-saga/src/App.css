@@ -1,7 +1,8 @@
 .todos-wrapper {
   width:350px;
-  height: 580px;
+  min-height: 580px;
   background-color: white;
   border-radius: 10px;
   padding: 0.5rem;
+  
 }
