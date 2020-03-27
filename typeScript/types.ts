@@ -59,3 +59,5 @@ const rect5: rectWithArea = {
     }
 }
 console.log(rect5.getArea())
+
+//------------------------------------------
