@@ -4,21 +4,20 @@ import './filters.css';
 import cn from 'classnames';
 
 const Filters = ({ filterTodos, objFilters }) => {
-   const clickFilter = (e, nameFilter) => { 
+   const clickFilter = (nameFilter) => { 
         filterTodos(nameFilter);
     }
-    const btnClassname  = {};
-    for (let key in objFilters) {
-        btnClassname[key] = cn({
+    const buttons = [];
+    for (let k in objFilters) {
+        let filterClassname = cn({
             'filters_button': true,
-            'active': objFilters[key]
+            'active': objFilters[k]
         })
+        buttons.push(
+            <button key={k} className={filterClassname} onClick={(e)=>clickFilter( k)} >{k}</button>
+        ) 
     }
-    const arrFilters = Object.keys(objFilters);
-    const buttons =  arrFilters.map((nameFilter)=>(
-        <button key={nameFilter} className={btnClassname[nameFilter]} onClick={(e)=>clickFilter(e,  nameFilter)} >{nameFilter}</button>
-    ));
-   
+      
     return (
         <div className="filters">
             {buttons}
