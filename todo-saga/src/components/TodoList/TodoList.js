@@ -4,19 +4,9 @@ import Todo  from './Todo/Todo';
 import './todoList.css';
 
 
-const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo, readJson}) => {
-    let isFilter = false;
-    for (let f in objFilters) {
-        if (objFilters[f]) {
-            isFilter = true;
-            break;
-        }
-    }
-    if ( !todos.length) return (
-        <>
+const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo }) => {
+    if ( !todos.length && !isLoding && !isError) return (
             <p>Список завдань пустий</p>
-            {(!isFilter && !todos.length) ?  <button onClick={readJson}>Load data</button>  : '' }
-        </>
     )
     else 
         return ( 
@@ -27,7 +17,7 @@ const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo,
     				<p className="todo__item__icon">Done</p>
     			</div>
                { isLoding ? ( <p>Loading...</p> ) : isError ? 
-                    ( <p>Помилка завантаження даних, спробуйте ще.</p> ) : 
+                    ( <p>Виникла помилка, спробуйте ще.</p> ) : 
                         (   <ul className="todos-ul">
                                 {todos.map((todo, index)=>(
                                     <Todo 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList/TodoList.js';
-import {readJson, changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions.js';
+import { changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions.js';
 
 const TodoListContainer = props => {
 	return <TodoList {...props} />
@@ -23,8 +23,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         removeTodo: (id) => {
           dispatch(removeTodoDispatchAction(id))
-        },
-        readJson: () => dispatch(readJson())
+        }
     }
 }
 

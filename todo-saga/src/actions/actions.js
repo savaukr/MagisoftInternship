@@ -82,6 +82,6 @@ export const filterTodoDispatchAction = (nameFilter) =>dispatch => {
         dispatch( filterTodoActionSuccess(nameFilter) );
     }
     catch {
-     dispatch( filterTodoActionFailure(new Error('Not filter')) );
+        dispatch( filterTodoActionFailure() );
     }
 }
