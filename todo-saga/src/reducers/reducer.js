@@ -50,10 +50,9 @@ const  infoTodos =  (state = initialState, action) => {
         case ADD_TODO_SUCCESS: 
             let copyState = {...state };
             let copyTodos = [ ...copyState.todos, action.payload ];
-            let copyTodosFilter = [ ...copyState.todosFilter, action.payload];
             return {
                 ...state,
-                todosFilter: copyTodosFilter,
+                todosFilter: copyTodos,
                 todos: copyTodos,
                 objFilters: { noneFinished:false, outDated:false, tomorrow:false },
                 isLoding: false,
@@ -74,7 +73,7 @@ const  infoTodos =  (state = initialState, action) => {
             };
         case REMOVE_TODO_SUCCESS: 
             copyTodos = state.todos.filter(todo=> +todo.id !== action.payload);
-            copyTodosFilter = state.todosFilter.filter(todo=> +todo.id !== action.payload);
+            let copyTodosFilter = state.todosFilter.filter(todo=> +todo.id !== action.payload);
             return {
                  ...state,
                 todos: copyTodos,
