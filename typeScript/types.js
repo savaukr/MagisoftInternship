@@ -16,10 +16,13 @@ function sayMyName(name) {
     console.log(name);
 }
 sayMyName('Huizinberg');
+//Never
 function myError(message) {
     throw new Error(message);
 }
 var login = 'admin';
+var logIn = ['user', 'password'];
+console.log(logIn);
 var rect2 = {
     id: '123445',
     size: {
@@ -38,3 +41,4 @@ var rect5 = {
     }
 };
 console.log(rect5.getArea());
+//------------------------------------------

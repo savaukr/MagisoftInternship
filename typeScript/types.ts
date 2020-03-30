@@ -18,13 +18,16 @@ function sayMyName(name:string):void {
     console.log(name)
 }
 sayMyName('Huizinberg');
-
+//Never
 function myError (message:string): never {
     throw new Error(message);
 }
+//Type
 type Login = string
 const login: Login = 'admin'
-
+type LogIn = string[]
+const logIn: LogIn = ['user', 'password']
+console.log(logIn);
 type SomeType = string|null|undefined
 //interface
 interface Rect {
@@ -35,7 +38,13 @@ interface Rect {
         height: number
     }
 }
-
+const rect1: Rect = {
+    id:'4',
+    size: {
+        width: 3,
+        height: 3
+    }
+}
 const rect2: Rect = {
     id:'123445',
     size: {
