@@ -1,14 +1,20 @@
 class Typescript {
 	version: string
-
 	constructor(version: string) {
-		this.version = version
+		this.version = version+'vers'	
 	}
-
+	
 	info(name: string) {
 		return `[${name}]: Typescript version is ${this.version}`
 	}
 }
+
+let typescr= new Typescript('1-2.2')
+typescr.version = '5-02';
+
+//console.log(typescr.info('vova'));
+//console.log(typescr.version);
+//console.log('----------------------');
 /*
 class Car {
 	readonly model: string

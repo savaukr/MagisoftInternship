@@ -13,13 +13,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var Typescript = /** @class */ (function () {
     function Typescript(version) {
-        this.version = version;
+        this.version = version + 'vers';
     }
     Typescript.prototype.info = function (name) {
         return "[" + name + "]: Typescript version is " + this.version;
     };
     return Typescript;
 }());
+var typescr = new Typescript('1-2.2');
+typescr.version = '5-02';
+//console.log(typescr.info('vova'));
+//console.log(typescr.version);
+//console.log('----------------------');
 /*
 class Car {
     readonly model: string
