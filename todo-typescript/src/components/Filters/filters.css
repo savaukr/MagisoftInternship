@@ -1,0 +1,16 @@
+.filters {
+	display:flex;
+	justify-content: space-around;
+    padding: 0.2rem 1rem;
+}
+.filters_button {
+    padding: 0.3rem 0.5rem;
+    border-radius: 7px;
+    border:none;
+    background-color: rgba(80,227,164, 0.95);
+    color:white;
+    cursor:pointer;
+}
+.filters_button.active, .filters_button:hover {
+      background-color: rgb(40,157,154);
+}
