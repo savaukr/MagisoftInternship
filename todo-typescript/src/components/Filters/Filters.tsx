@@ -1,17 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import   cn  from 'classnames';
 import './filters.css';
-import cn from 'classnames';
-
-const Filters = ({ filterTodos, objFilters }) => {
-   const clickFilter = (nameFilter) => { 
+interface IProps {
+    filterTodos: Function
+    objFilters: {
+        noneFinished:boolean
+        outDated:boolean
+        tomorrow:boolean
+    }
+}
+const Filters: React.SFC<IProps> = ({ filterTodos, objFilters }:IProps) => {
+   const clickFilter = (nameFilter: string) => { 
         filterTodos(nameFilter);
     }
     const buttons = [];
     for (let k in objFilters) {
         let filterClassname = cn({
-            'filters_button': true,
-            'active': objFilters[k]
+            filters_button: true,
+            active: objFilters[k]
         })
         buttons.push(
             <button key={k} className={filterClassname} onClick={(e)=>clickFilter( k)} >{k}</button>
