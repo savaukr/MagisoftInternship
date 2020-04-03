@@ -1,8 +1,16 @@
 import React from 'react';
 import './todo.css';
 import PropTypes from 'prop-types';
+import { typeTodo } from '../../../types/interfaces';
+//import {typeTodos } from '../../../types/interfaces'
 
-const Todo = ({ todos, todo, changeTodo, removeTodo }) => {
+interface IProps {
+    changeTodo: Function
+    removeTodo: Function
+    todo: typeTodo
+}
+
+const Todo: React.SFC<IProps> = ({todo, changeTodo, removeTodo }:IProps) => {
     return (
         <li className="todo"
             style={{
@@ -23,8 +31,8 @@ const Todo = ({ todos, todo, changeTodo, removeTodo }) => {
 }
 
 Todo.propTypes = {
-   todo: PropTypes.object.isRequired,
-   changeIsDone: PropTypes.func.isRequired
+   //todo: PropTypes.object.isRequired,
+   //changeIsDone: PropTypes.func.isRequired
 }
 
 export default Todo;

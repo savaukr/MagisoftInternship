@@ -3,18 +3,19 @@ import { connect } from 'react-redux';
 
 import Filters from '../components/Filters/Filters';
 import { filterTodoDispatchAction } from '../actions/actions';
+import {IState} from '../types/interfaces'
 
-const FiltersContainer = (props) => {
+const FiltersContainer = (props:any) => {
 	return <Filters {...props} />
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = ( state: {infoTodos:IState} ) => {
 	return {
 		objFilters: state.infoTodos.objFilters
 	}
 }
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
 	return {
-		filterTodos: (nameFilter)=>{
+		filterTodos: (nameFilter:string)=>{
 			dispatch(filterTodoDispatchAction(nameFilter))
 		}
 	}

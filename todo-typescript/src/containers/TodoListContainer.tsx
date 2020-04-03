@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList/TodoList.js';
 import { changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions.js';
+import { typeTodo } from '../types/interfaces.js';
 
-const TodoListContainer = props => {
+const TodoListContainer = (props:any) => {
 	return <TodoList {...props} />
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:any) => {
     return {
         todos: state.infoTodos.todosFilter,
         isLoading: state.infoTodos.isLoading,
@@ -16,12 +17,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch:any) => {
     return {
-        changeTodo: (todo) => {
+        changeTodo: (todo:typeTodo) => {
           dispatch(changeTodoDispatchAction(todo, true ))
         },
-        removeTodo: (id) => {
+        removeTodo: (id:string) => {
           dispatch(removeTodoDispatchAction(id))
         }
     }

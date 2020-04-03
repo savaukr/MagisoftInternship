@@ -16,11 +16,7 @@ const composeEnhancers = composeWithDevTools({ serialize: true });
 
 const store = createStore( rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>, document.getElementById('root')
-);
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

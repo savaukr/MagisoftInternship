@@ -5,9 +5,7 @@ import './filters.css';
 interface IProps {
     filterTodos: Function
     objFilters: {
-        noneFinished:boolean
-        outDated:boolean
-        tomorrow:boolean
+        [key:string]:boolean
     }
 }
 const Filters: React.SFC<IProps> = ({ filterTodos, objFilters }:IProps) => {
@@ -15,7 +13,7 @@ const Filters: React.SFC<IProps> = ({ filterTodos, objFilters }:IProps) => {
         filterTodos(nameFilter);
     }
     const buttons = [];
-    for (let k in objFilters) {
+    for (let k  in objFilters) {
         let filterClassname = cn({
             filters_button: true,
             active: objFilters[k]
@@ -32,8 +30,8 @@ const Filters: React.SFC<IProps> = ({ filterTodos, objFilters }:IProps) => {
     )
 }
     
-Filters.propTypes ={
-    filterTodos: PropTypes.func.isRequired,
-    objFilters: PropTypes.object.isRequired
-}
+// Filters.propTypes ={
+//     filterTodos: PropTypes.func.isRequired,
+//     objFilters: PropTypes.object.isRequired
+// }
 export default Filters;

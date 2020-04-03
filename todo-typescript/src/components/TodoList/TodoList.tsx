@@ -1,10 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Todo  from './Todo/Todo';
 import './todoList.css';
+import {typeTodo, typeTodos} from '../../types/interfaces'
 
+interface IProps {
+    isLoding: boolean
+    isError: boolean
+    removeTodo: Function
+    changeTodo: Function
+    todo: typeTodo
+    todos: typeTodos
+}
 
-const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo }) => {
+const TodoList: React.SFC<IProps> =  ({todos, isLoding, isError, removeTodo, changeTodo }:IProps) => {
     if ( !todos.length && !isLoding && !isError) return (
             <p>Список завдань пустий</p>
     )
@@ -24,7 +33,6 @@ const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo 
                                         key={todo.id}
                                         removeTodo = {removeTodo}
                                         changeTodo={changeTodo}
-                                        todos = {todos}
                                         todo={todo}
                                     />
                                 ))}
@@ -35,10 +43,10 @@ const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo 
         )
 }
 
-TodoList.propTypes =  {
-    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    changeIsDone: PropTypes.func.isRequired,
-    removeTodo: PropTypes.func.isRequired
-}
+// TodoList.propTypes =  {
+//     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+//     changeIsDone: PropTypes.func.isRequired,
+//     removeTodo: PropTypes.func.isRequired
+// }
 
 export default TodoList;
