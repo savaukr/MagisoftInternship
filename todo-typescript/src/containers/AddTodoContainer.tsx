@@ -1,16 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import AddTodo from '../components/AddTodo/AddTodo.js';
-import { addTodoDispatchAction } from '../actions/actions.js';
-import { typeTodo } from '../types/interfaces.js';
+import AddTodo from '../components/AddTodo/AddTodo';
+import { addTodoDispatchAction } from '../actions/actions';
+import { typeTodo, IState } from '../types/interfaces';
+
+interface IProps {
+	createTodo: any
+}
 
 
-const AddTodoContainer = (props:any) => {
+const AddTodoContainer = (props: IProps) => {
 	return <AddTodo {...props} />
 }
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: IState) => {
     return {
         //todos: state.infoTodos.todos
     }

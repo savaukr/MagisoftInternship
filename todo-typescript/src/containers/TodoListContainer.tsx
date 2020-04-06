@@ -1,14 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TodoList from '../components/TodoList/TodoList.js';
-import { changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions.js';
-import { typeTodo } from '../types/interfaces.js';
+import TodoList from '../components/TodoList/TodoList';
+import { changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions';
+import { typeTodo, typeTodos, IState } from '../types/interfaces';
 
-const TodoListContainer = (props:any) => {
+
+interface IProps {
+  todos: typeTodos
+  isLoading: boolean
+  isError: boolean
+  changeTodo: any
+  removeTodo: any
+}
+
+const TodoListContainer = (props:IProps) => {
 	return <TodoList {...props} />
 }
 
-const mapStateToProps = (state:any) => {
+const mapStateToProps = (state: {infoTodos: IState}) => {
     return {
         todos: state.infoTodos.todosFilter,
         isLoading: state.infoTodos.isLoading,

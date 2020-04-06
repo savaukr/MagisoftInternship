@@ -2,19 +2,18 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import Todo  from './Todo/Todo';
 import './todoList.css';
-import {typeTodo, typeTodos} from '../../types/interfaces'
+import { typeTodos} from '../../types/interfaces'
 
 interface IProps {
-    isLoding: boolean
+    isLoading: boolean
     isError: boolean
     removeTodo: Function
     changeTodo: Function
-    todo: typeTodo
     todos: typeTodos
 }
 
-const TodoList: React.SFC<IProps> =  ({todos, isLoding, isError, removeTodo, changeTodo }:IProps) => {
-    if ( !todos.length && !isLoding && !isError) return (
+const TodoList: React.SFC<IProps> =  ({todos, isLoading, isError, removeTodo, changeTodo }:IProps) => {
+    if ( !todos.length && !isLoading && !isError) return (
             <p>Список завдань пустий</p>
     )
     else 
@@ -25,7 +24,7 @@ const TodoList: React.SFC<IProps> =  ({todos, isLoding, isError, removeTodo, cha
                     <p className="todo__item__dueDate">Due Date</p>
     				<p className="todo__item__icon">Done</p>
     			</div>
-               { isLoding ? ( <p>Loading...</p> ) : isError ? 
+               { isLoading ? ( <p>Loading...</p> ) : isError ? 
                     ( <p>Виникла помилка, спробуйте ще.</p> ) : 
                         (   <ul className="todos-ul">
                                 {todos.map((todo, index)=>(

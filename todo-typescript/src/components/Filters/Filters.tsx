@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import   cn  from 'classnames';
 import './filters.css';
+
 interface IProps {
     filterTodos: Function
     objFilters: {

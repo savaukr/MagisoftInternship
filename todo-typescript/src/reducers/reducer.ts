@@ -4,11 +4,11 @@ import {
  REMOVE_TODO_REQUEST, REMOVE_TODO_FAILURE, REMOVE_TODO_SUCCESS,
  ADD_TODO_REQUEST, ADD_TODO_FAILURE, ADD_TODO_SUCCESS,
  FILTER_TODO_REQUEST, FILTER_TODO_FAILURE, FILTER_TODO_SUCCESS } from '../types/actionsTypes';
-import { IState } from '../types/interfaces';
-import { IAction } from '../types/interfaces';
-import { typeFilters } from '../types/interfaces';
-import { typeTodo } from '../types/interfaces';
-const initialState:IState = {
+
+import { IState, IAction } from '../types/interfaces';
+import { typeFilters, typeTodo } from '../types/interfaces';
+
+const initialState: IState = {
     todos: [
         /*{id:"1", title:'first task', createDate: new Date(), dueDate:'2020-05-06', isDone:true },
         {id:"2", title:'second task', createDate: new Date(), dueDate:'2020-03-01', isDone:false },
@@ -16,18 +16,18 @@ const initialState:IState = {
     ],       
     todosFilter: [],
     objFilters:{noneFinished:false, outDated:false, tomorrow:false },
-    isLoding: false,
+    isLoading: false,
     isError: false
 } 
 initialState.todosFilter = [...initialState.todos];
 
 
-const  infoTodos =  (state = initialState, action: IAction) => {
+const  infoTodos =  (state = initialState, action: IAction):IState => {
     switch (action.type) {
         case READ_JSON_REQUEST:
             return { 
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             }
         case READ_JSON_SUCCESS: 
@@ -35,20 +35,20 @@ const  infoTodos =  (state = initialState, action: IAction) => {
                 ...state,
                 todosFilter: action.payload,
                 todos: action.payload,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             };
         case READ_JSON_FAILURE:
             return { 
                 ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             };
 
         case ADD_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case ADD_TODO_SUCCESS: 
@@ -59,20 +59,20 @@ const  infoTodos =  (state = initialState, action: IAction) => {
                 todosFilter: copyTodos,
                 todos: copyTodos,
                 objFilters: { noneFinished:false, outDated:false, tomorrow:false },
-                isLoding: false,
+                isLoading: false,
                 isError: false
             };
         case ADD_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
 
         case  REMOVE_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case REMOVE_TODO_SUCCESS: 
@@ -82,20 +82,20 @@ const  infoTodos =  (state = initialState, action: IAction) => {
                  ...state,
                 todos: copyTodos,
                 todosFilter: copyTodosFilter,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             }
         case REMOVE_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
             
         case CHANGE_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case CHANGE_TODO_SUCCESS: 
@@ -111,20 +111,20 @@ const  infoTodos =  (state = initialState, action: IAction) => {
                  ...state,
                 todos: copyTodos,
                 todosFilter: copyTodosFilter,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             }
         case CHANGE_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
 
         case FILTER_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case FILTER_TODO_SUCCESS: 
@@ -143,13 +143,13 @@ const  infoTodos =  (state = initialState, action: IAction) => {
                 ...state,
                 objFilters: copyFilters,
                 todosFilter: copyTodos,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             }
         case FILTER_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
 

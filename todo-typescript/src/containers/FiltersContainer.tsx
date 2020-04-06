@@ -3,9 +3,14 @@ import { connect } from 'react-redux';
 
 import Filters from '../components/Filters/Filters';
 import { filterTodoDispatchAction } from '../actions/actions';
-import {IState} from '../types/interfaces'
+import {IState, typeFilters} from '../types/interfaces'
 
-const FiltersContainer = (props:any) => {
+interface IProps {
+	filterTodos: any
+    objFilters: typeFilters
+}
+
+const FiltersContainer = (props:IProps) => {
 	return <Filters {...props} />
 }
 const mapStateToProps = ( state: {infoTodos:IState} ) => {

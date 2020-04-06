@@ -6,12 +6,13 @@ import {
         FILTER_TODO_REQUEST, FILTER_TODO_FAILURE, FILTER_TODO_SUCCESS } from '../types/actionsTypes';
 
 import axios from  'axios';
+import { IState, typeTodo, IAction } from '../types/interfaces';
 
 
 //read from <file>.json
-export const readJsonActionRequest = () => ({type: READ_JSON_REQUEST});
-export const readJsonActionFailure = () => ({ type: READ_JSON_FAILURE})
-export const readJsonActionSuccess = (data: any) => ({
+export const readJsonActionRequest = ():IAction => ({type: READ_JSON_REQUEST});
+export const readJsonActionFailure = ():IAction => ({ type: READ_JSON_FAILURE})
+export const readJsonActionSuccess = (data: IState):IAction => ({
     type:READ_JSON_SUCCESS,
     payload: data
 });
@@ -37,17 +38,17 @@ export const removeTodoDispatchAction = (id: string) => (dispatch: any) => {
 //change Todo
 export const changeTodoActionRequest = () => ({ type: CHANGE_TODO_REQUEST })
 export const changeTodoActionFailure = () => ({ type: CHANGE_TODO_FAILURE })
-export const changeTodoActionSuccess = (todo:any) => ({
+export const changeTodoActionSuccess = (todo:typeTodo) => ({
         type: CHANGE_TODO_SUCCESS,
         payload: todo
 });
-const helpChangeTodo = (todo: any, isChangeDone: any, changedDueDate: any = undefined ) => {
+const helpChangeTodo = (todo: typeTodo, isChangeDone: boolean, changedDueDate: any = undefined ) => {
     let { ...copyTodo} = todo;
     if (changedDueDate) copyTodo.dueDate = changedDueDate;
     if ( isChangeDone ) copyTodo.isDone = !copyTodo.isDone;
     return copyTodo;
 }
-export const changeTodoDispatchAction = (todo: any, isChangeDone=false, changedDueDate = undefined) =>( dispatch: any) => {
+export const changeTodoDispatchAction = (todo: typeTodo, isChangeDone=false, changedDueDate = undefined) =>( dispatch: any) => {
     dispatch(changeTodoActionRequest());
     axios.put('/api/todos', helpChangeTodo(todo, isChangeDone))
         .then(response => dispatch( changeTodoActionSuccess(response.data) ))
@@ -57,12 +58,12 @@ export const changeTodoDispatchAction = (todo: any, isChangeDone=false, changedD
 //add Todo
 export const addTodoActionRequest = () => ({ type: ADD_TODO_REQUEST })
 export const addTodoActionFailure = () => ({ type: ADD_TODO_FAILURE })
-export const addTodoActionSuccess = (todo: any) => ({
+export const addTodoActionSuccess = (todo: typeTodo) => ({
         type: ADD_TODO_SUCCESS,
         payload: todo
 });
 
-export const addTodoDispatchAction = (todo: any) => (dispatch: any) => {
+export const addTodoDispatchAction = (todo: typeTodo) => (dispatch: any) => {
     dispatch(addTodoActionRequest());
     axios.post('/api/todos', todo )
         .then( response => dispatch( addTodoActionSuccess(response.data) ))
