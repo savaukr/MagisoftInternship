@@ -3,26 +3,29 @@ import { connect } from 'react-redux';
 
 import AddTodo from '../components/AddTodo/AddTodo';
 import { addTodoDispatchAction } from '../actions/actions';
-import { typeTodo, IState } from '../types/interfaces';
+import { typeTodo } from '../types/interfaces';
+import { StateReducerType } from '../reducers/index'
+//import { DispatchType } from '..';
 
-interface IProps {
-	createTodo: any
+
+interface IPropsDispatch {
+	createTodo: Function
 }
+export type PropsType = IPropsDispatch
 
-
-const AddTodoContainer = (props: IProps) => {
+const AddTodoContainer: React.SFC<PropsType> = (props: PropsType) => {
 	return <AddTodo {...props} />
 }
 
-const mapStateToProps = (state: IState) => {
+const mapStateToProps = (state: StateReducerType) => {
     return {
         //todos: state.infoTodos.todos
     }
 }
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        createTodo: (todo:typeTodo) => {
+        createTodo: (todo: typeTodo) => {
           dispatch(addTodoDispatchAction(todo))
         }
     }

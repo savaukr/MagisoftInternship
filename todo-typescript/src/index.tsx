@@ -15,6 +15,7 @@ import rootReducer from './reducers/index';
 const composeEnhancers = composeWithDevTools({ serialize: true });
 
 const store = createStore( rootReducer, composeEnhancers(applyMiddleware(thunk)));
+export type DispatchType = typeof store.dispatch
 
 ReactDOM.render(
   <React.StrictMode>

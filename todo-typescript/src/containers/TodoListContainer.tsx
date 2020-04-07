@@ -2,22 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TodoList from '../components/TodoList/TodoList';
 import { changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions';
-import { typeTodo, typeTodos, IState } from '../types/interfaces';
-
-
-interface IProps {
+import { typeTodo, typeTodos, typeFilters } from '../types/interfaces';
+import { StateReducerType } from '../reducers/index'
+//import { DispatchType } from '..';
+interface IStateProps {
   todos: typeTodos
   isLoading: boolean
   isError: boolean
-  changeTodo: any
-  removeTodo: any
+  objFilters:  typeFilters
+}
+interface IDispatchProps {
+  changeTodo: Function
+  removeTodo: Function
 }
 
-const TodoListContainer = (props:IProps) => {
+export type TodoListPropsType  = IStateProps & IDispatchProps
+
+const TodoListContainer: React.SFC<TodoListPropsType> = (props: TodoListPropsType) => {
 	return <TodoList {...props} />
 }
 
-const mapStateToProps = (state: {infoTodos: IState}) => {
+const mapStateToProps = (state: StateReducerType) => {
     return {
         todos: state.infoTodos.todosFilter,
         isLoading: state.infoTodos.isLoading,
@@ -26,7 +31,7 @@ const mapStateToProps = (state: {infoTodos: IState}) => {
     }
 }
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
         changeTodo: (todo:typeTodo) => {
           dispatch(changeTodoDispatchAction(todo, true ))

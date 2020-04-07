@@ -1,19 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import Filters from '../components/Filters/Filters';
-import { filterTodoDispatchAction } from '../actions/actions';
-import {IState, typeFilters} from '../types/interfaces'
+import Filters from '../components/Filters/Filters'
+import { filterTodoDispatchAction } from '../actions/actions'
+import { typeFilters } from '../types/interfaces'
+import { StateReducerType } from '../reducers/index'
+//import { DispatchType } from '..'
 
 interface IProps {
-	filterTodos: any
+	filterTodos: Function
     objFilters: typeFilters
 }
 
-const FiltersContainer = (props:IProps) => {
+const FiltersContainer: React.SFC<IProps> = (props:IProps) => {
 	return <Filters {...props} />
 }
-const mapStateToProps = ( state: {infoTodos:IState} ) => {
+const mapStateToProps = ( state: StateReducerType ) => {
 	return {
 		objFilters: state.infoTodos.objFilters
 	}

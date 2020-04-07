@@ -76,8 +76,12 @@ const  infoTodos =  (state = initialState, action: IAction):IState => {
                 isError: false
             };
         case REMOVE_TODO_SUCCESS: 
-            copyTodos = state.todos.filter(todo=> +todo.id !== action.payload);
-            let copyTodosFilter = state.todosFilter.filter((todo: typeTodo)=> +todo.id !== action.payload);
+            copyTodos = state.todos.filter((todo: typeTodo) => {
+             if (todo.id !== undefined) return +todo.id !== action.payload
+            });
+            let copyTodosFilter = state.todosFilter.filter((todo: typeTodo) => {
+                if (todo.id !== undefined) return +todo.id !== action.payload
+            });
             return {
                  ...state,
                 todos: copyTodos,

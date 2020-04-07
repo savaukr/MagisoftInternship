@@ -7,12 +7,17 @@ import {
 
 import axios from  'axios';
 import { IState, typeTodo, IAction } from '../types/interfaces';
+//import { DispatchType } from '../index';
 
 
 //read from <file>.json
+interface IReadJsonActionSuccess {
+    type: typeof READ_JSON_SUCCESS
+    payload: IState
+}
 export const readJsonActionRequest = ():IAction => ({type: READ_JSON_REQUEST});
 export const readJsonActionFailure = ():IAction => ({ type: READ_JSON_FAILURE})
-export const readJsonActionSuccess = (data: IState):IAction => ({
+export const readJsonActionSuccess = (data: IState):IReadJsonActionSuccess => ({
     type:READ_JSON_SUCCESS,
     payload: data
 });
@@ -23,9 +28,13 @@ export const readJson = () => (dispatch: any) => {
         .catch(() => dispatch(readJsonActionFailure() ))
 }
 // remove Todo
-export const removeTodoActionRequest = () => ({ type: REMOVE_TODO_REQUEST })
-export const removeTodoActionFailure = () => ({ type: REMOVE_TODO_FAILURE })
-export const removeTodoActionSuccess = (id: string) => ({
+interface IRemoveTodoActionSuccess {
+    type: typeof REMOVE_TODO_SUCCESS
+    payload: string
+}
+export const removeTodoActionRequest = ():IAction => ({ type: REMOVE_TODO_REQUEST })
+export const removeTodoActionFailure = ():IAction=> ({ type: REMOVE_TODO_FAILURE })
+export const removeTodoActionSuccess = (id: string):IRemoveTodoActionSuccess => ({
         type: REMOVE_TODO_SUCCESS,
         payload: id
 });
@@ -36,9 +45,13 @@ export const removeTodoDispatchAction = (id: string) => (dispatch: any) => {
         .catch(() => dispatch( removeTodoActionFailure() ))
 }
 //change Todo
-export const changeTodoActionRequest = () => ({ type: CHANGE_TODO_REQUEST })
-export const changeTodoActionFailure = () => ({ type: CHANGE_TODO_FAILURE })
-export const changeTodoActionSuccess = (todo:typeTodo) => ({
+interface IChangeTodoActionSuccess {
+    type: typeof CHANGE_TODO_SUCCESS
+    payload: typeTodo
+}
+export const changeTodoActionRequest = ():IAction => ({ type: CHANGE_TODO_REQUEST })
+export const changeTodoActionFailure = ():IAction => ({ type: CHANGE_TODO_FAILURE })
+export const changeTodoActionSuccess = (todo:typeTodo):IChangeTodoActionSuccess => ({
         type: CHANGE_TODO_SUCCESS,
         payload: todo
 });
@@ -56,9 +69,13 @@ export const changeTodoDispatchAction = (todo: typeTodo, isChangeDone=false, cha
 }
 
 //add Todo
-export const addTodoActionRequest = () => ({ type: ADD_TODO_REQUEST })
-export const addTodoActionFailure = () => ({ type: ADD_TODO_FAILURE })
-export const addTodoActionSuccess = (todo: typeTodo) => ({
+interface IAddTodoActionSuccess {
+    type: typeof ADD_TODO_SUCCESS
+    payload: typeTodo
+}
+export const addTodoActionRequest = ():IAction => ({ type: ADD_TODO_REQUEST })
+export const addTodoActionFailure = ():IAction => ({ type: ADD_TODO_FAILURE })
+export const addTodoActionSuccess = (todo: typeTodo):IAddTodoActionSuccess => ({
         type: ADD_TODO_SUCCESS,
         payload: todo
 });
@@ -70,9 +87,13 @@ export const addTodoDispatchAction = (todo: typeTodo) => (dispatch: any) => {
         .catch( () => dispatch( addTodoActionFailure() ))
 }
 //filter Todos
-export const filterTodoActionRequest = () => ({ type: FILTER_TODO_REQUEST })
-export const filterTodoActionFailure = () => ({ type: FILTER_TODO_FAILURE })
-export const filterTodoActionSuccess = (nameFilter: string) => ({
+interface IFilterTodoActionSuccess {
+    type: typeof FILTER_TODO_SUCCESS
+    payload: string
+}
+export const filterTodoActionRequest = ():IAction => ({ type: FILTER_TODO_REQUEST })
+export const filterTodoActionFailure = ():IAction => ({ type: FILTER_TODO_FAILURE })
+export const filterTodoActionSuccess = (nameFilter: string):IFilterTodoActionSuccess => ({
         type: FILTER_TODO_SUCCESS,
         payload: nameFilter
 });

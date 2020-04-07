@@ -2,15 +2,13 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './addTodo.css';
 
-interface IProps {
-    createTodo: Function
-}
+import  { PropsType } from '../../containers/AddTodoContainer'
 
-const AddTodo: React.SFC<IProps> = ({ createTodo }:IProps)=> {
+const AddTodo: React.SFC<PropsType> = ({ createTodo }:PropsType)=> {
     const [title, setTitle] = useState('');
     const [dueDate, setDueDate] = useState('');
     const todo = {title:title, createDate: new Date(), dueDate:dueDate, isDone:false}
-    const submitTodo = (event: any)=>{
+    const submitTodo = (event:any)=>{
         event.preventDefault();
         if (title.trim() && dueDate) {
             createTodo(todo);
@@ -28,7 +26,6 @@ const AddTodo: React.SFC<IProps> = ({ createTodo }:IProps)=> {
 }
 
 AddTodo.propTypes ={
-    //todos: PropTypes.array,
     createTodo: PropTypes.func.isRequired
 }
 
