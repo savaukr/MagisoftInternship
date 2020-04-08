@@ -4,7 +4,7 @@ import TodoList from '../components/TodoList/TodoList';
 import { changeTodoDispatchAction, removeTodoDispatchAction} from '../actions/actions';
 import { typeTodo, typeTodos, typeFilters } from '../types/interfaces';
 import { StateReducerType } from '../reducers/index'
-//import { DispatchType } from '..';
+
 interface IStateProps {
   todos: typeTodos
   isLoading: boolean

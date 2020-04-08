@@ -1,5 +1,5 @@
-export type typeTodo = {id?:string, title:string, createDate?: Date, dueDate: string, isDone:boolean};
-export type typeTodos = typeTodo[];
+export type typeTodo = {id?:string, title:string, createDate?: Date, dueDate: string, isDone:boolean} ;
+export type typeTodos = Array<typeTodo>;
 export type  typeFilters = {
     [key:string]:boolean
 }
@@ -10,9 +10,4 @@ export interface IState {
     todosFilter: typeTodos  
     isLoading: boolean
     isError: boolean
-}
-
-export interface IAction {
-    type: string
-    payload?: any
 }

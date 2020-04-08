@@ -5,12 +5,12 @@ import {
  ADD_TODO_REQUEST, ADD_TODO_FAILURE, ADD_TODO_SUCCESS,
  FILTER_TODO_REQUEST, FILTER_TODO_FAILURE, FILTER_TODO_SUCCESS } from '../types/actionsTypes';
 
-import { IState, IAction } from '../types/interfaces';
-import { typeFilters, typeTodo } from '../types/interfaces';
+import { TAction } from '../types/actionsTypes'
+import { IState, typeFilters, typeTodo } from '../types/interfaces';
 
 const initialState: IState = {
     todos: [
-        /*{id:"1", title:'first task', createDate: new Date(), dueDate:'2020-05-06', isDone:true },
+       /* {id:"1", title:'first task', createDate: new Date(), dueDate:'2020-05-06', isDone:true },
         {id:"2", title:'second task', createDate: new Date(), dueDate:'2020-03-01', isDone:false },
         {id:"3", title:'tommorow task', createDate: new Date(), dueDate:'2020-03-15', isDone:false }*/
     ],       
@@ -22,7 +22,7 @@ const initialState: IState = {
 initialState.todosFilter = [...initialState.todos];
 
 
-const  infoTodos =  (state = initialState, action: IAction):IState => {
+const  infoTodos =  (state = initialState, action: TAction):IState => {
     switch (action.type) {
         case READ_JSON_REQUEST:
             return { 
@@ -77,10 +77,10 @@ const  infoTodos =  (state = initialState, action: IAction):IState => {
             };
         case REMOVE_TODO_SUCCESS: 
             copyTodos = state.todos.filter((todo: typeTodo) => {
-             if (todo.id !== undefined) return +todo.id !== action.payload
+             if (todo.id !== undefined) return todo.id !== action.payload
             });
             let copyTodosFilter = state.todosFilter.filter((todo: typeTodo) => {
-                if (todo.id !== undefined) return +todo.id !== action.payload
+                if (todo.id !== undefined) return todo.id !== action.payload
             });
             return {
                  ...state,
