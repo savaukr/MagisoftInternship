@@ -28,7 +28,7 @@ export const readJsonActionSuccess = (data: typeTodos):TReadJsonActionSuccess =>
 });
 export const readJson = () => (dispatch: Dispatch<TAction>) => {
     dispatch(readJsonActionRequest());
-    axios.get('/api/todos')
+    axios.get<typeTodos>('/api/todos')
         .then(response => dispatch(readJsonActionSuccess(response.data)))
         .catch(() => dispatch(readJsonActionFailure() ))
 }
@@ -62,7 +62,7 @@ const helpChangeTodo = (todo: typeTodo, isChangeDone: boolean, changedDueDate: a
 }
 export const changeTodoDispatchAction = (todo: typeTodo, isChangeDone=false, changedDueDate = undefined) =>( dispatch: Dispatch<TAction>) => {
     dispatch(changeTodoActionRequest());
-    axios.put('/api/todos', helpChangeTodo(todo, isChangeDone))
+    axios.put<typeTodo>('/api/todos', helpChangeTodo(todo, isChangeDone))
         .then(response => dispatch( changeTodoActionSuccess(response.data) ))
         .catch(() => dispatch( changeTodoActionFailure() ))
 }
@@ -77,7 +77,7 @@ export const addTodoActionSuccess = (todo: typeTodo):TAddTodoActionSuccess => ({
 
 export const addTodoDispatchAction = (todo: typeTodo) => (dispatch: Dispatch<TAction>) => {
     dispatch(addTodoActionRequest());
-    axios.post('/api/todos', todo )
+    axios.post<typeTodo>('/api/todos', todo )
         .then( response => dispatch( addTodoActionSuccess(response.data) ))
         .catch( () => dispatch( addTodoActionFailure() ))
 }
