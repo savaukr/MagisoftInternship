@@ -12,41 +12,42 @@ import {
     TRemoveTodoActionRequest, TRemoveTodoActionFailure, TRemoveTodoActionSuccess,
     TAddTodoActionRequest, TAddTodoActionFailure, TAddTodoActionSuccess,
     TChangeTodoActionRequest, TChangeTodoActionFailure, TChangeTodoActionSuccess,
-    TFilterTodoActionRequest, TFilterTodoActionFailure, TFilterTodoActionSuccess
+    TFilterTodoActionRequest, TFilterTodoActionFailure, TFilterTodoActionSuccess,
+    TAction
 } from '../types/actionsTypes'
+import { Dispatch } from 'redux';
 //import { DispatchType } from '../index';
 
 
 //read from <file>.json
-
 export const readJsonActionRequest = ():TReadJsonActionRequest => ({type: READ_JSON_REQUEST});
 export const readJsonActionFailure = ():TReadJsonActionFailure => ({ type: READ_JSON_FAILURE})
 export const readJsonActionSuccess = (data: typeTodos):TReadJsonActionSuccess => ({
     type:READ_JSON_SUCCESS,
     payload: data
 });
-export const readJson = () => (dispatch: any) => {
+export const readJson = () => (dispatch: Dispatch<TAction>) => {
     dispatch(readJsonActionRequest());
     axios.get('/api/todos')
         .then(response => dispatch(readJsonActionSuccess(response.data)))
         .catch(() => dispatch(readJsonActionFailure() ))
 }
-// remove Todo
 
+// remove Todo
 export const removeTodoActionRequest = ():TRemoveTodoActionRequest => ({ type: REMOVE_TODO_REQUEST })
 export const removeTodoActionFailure = ():TRemoveTodoActionFailure=> ({ type: REMOVE_TODO_FAILURE })
 export const removeTodoActionSuccess = (id: string):TRemoveTodoActionSuccess => ({
         type: REMOVE_TODO_SUCCESS,
         payload: id
 });
-export const removeTodoDispatchAction = (id: string) => (dispatch: any) => {
+export const removeTodoDispatchAction = (id: string) => (dispatch: Dispatch<TAction>) => {
     dispatch(removeTodoActionRequest());
     axios.delete('/api/todos/'+id)
         .then(response => dispatch( removeTodoActionSuccess(response.data.id) ))
         .catch(() => dispatch( removeTodoActionFailure() ))
 }
-//change Todo
 
+//change Todo
 export const changeTodoActionRequest = ():TChangeTodoActionRequest => ({ type: CHANGE_TODO_REQUEST })
 export const changeTodoActionFailure = ():TChangeTodoActionFailure => ({ type: CHANGE_TODO_FAILURE })
 export const changeTodoActionSuccess = (todo:typeTodo):TChangeTodoActionSuccess => ({
@@ -59,7 +60,7 @@ const helpChangeTodo = (todo: typeTodo, isChangeDone: boolean, changedDueDate: a
     if ( isChangeDone ) copyTodo.isDone = !copyTodo.isDone;
     return copyTodo;
 }
-export const changeTodoDispatchAction = (todo: typeTodo, isChangeDone=false, changedDueDate = undefined) =>( dispatch: any) => {
+export const changeTodoDispatchAction = (todo: typeTodo, isChangeDone=false, changedDueDate = undefined) =>( dispatch: Dispatch<TAction>) => {
     dispatch(changeTodoActionRequest());
     axios.put('/api/todos', helpChangeTodo(todo, isChangeDone))
         .then(response => dispatch( changeTodoActionSuccess(response.data) ))
@@ -67,7 +68,6 @@ export const changeTodoDispatchAction = (todo: typeTodo, isChangeDone=false, cha
 }
 
 //add Todo
-
 export const addTodoActionRequest = ():TAddTodoActionRequest => ({ type: ADD_TODO_REQUEST })
 export const addTodoActionFailure = ():TAddTodoActionFailure => ({ type: ADD_TODO_FAILURE })
 export const addTodoActionSuccess = (todo: typeTodo):TAddTodoActionSuccess => ({
@@ -75,12 +75,13 @@ export const addTodoActionSuccess = (todo: typeTodo):TAddTodoActionSuccess => ({
         payload: todo
 });
 
-export const addTodoDispatchAction = (todo: typeTodo) => (dispatch: any) => {
+export const addTodoDispatchAction = (todo: typeTodo) => (dispatch: Dispatch<TAction>) => {
     dispatch(addTodoActionRequest());
     axios.post('/api/todos', todo )
         .then( response => dispatch( addTodoActionSuccess(response.data) ))
         .catch( () => dispatch( addTodoActionFailure() ))
 }
+
 //filter Todos
 export const filterTodoActionRequest = ():TFilterTodoActionRequest => ({ type: FILTER_TODO_REQUEST })
 export const filterTodoActionFailure = ():TFilterTodoActionFailure => ({ type: FILTER_TODO_FAILURE })
@@ -89,7 +90,7 @@ export const filterTodoActionSuccess = (nameFilter: string):TFilterTodoActionSuc
         payload: nameFilter
 });
 
-export const filterTodoDispatchAction = (nameFilter: string) => (dispatch: any) => {
+export const filterTodoDispatchAction = (nameFilter: string) => (dispatch: Dispatch<TAction>) => {
     try {
         dispatch( filterTodoActionRequest());
         dispatch( filterTodoActionSuccess(nameFilter) );

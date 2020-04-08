@@ -43,3 +43,16 @@ const mapDispatchToProps = (dispatch: any) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoListContainer);
+
+/*
+type StateProps = ReturnType<typeof mapStateToProps>
+type DispatchProps = typeof mapDispatchToProps
+type Props = StateProps & DispatchProps
+const connector = connect(mapStateToProps, mapDispatchToProps)
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+const TodoListContainer: React.SFC<PropsFromRedux> = (props: PropsFromRedux) => {
+	return <TodoList {...props} />
+}
+export default connector(TodoListContainer);
+*/
