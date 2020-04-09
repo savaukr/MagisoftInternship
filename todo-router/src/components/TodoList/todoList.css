@@ -1,0 +1,12 @@
+.todos-ul {
+    padding: 0 0 0 1rem;
+}
+.todo__header{
+	display:flex;
+	justify-content: space-between;
+	padding: 0 0.3rem;
+	background-color: rgb(250,250,250);
+}
+.todo__item__dueDate {
+	margin-left: 15%;
+}
