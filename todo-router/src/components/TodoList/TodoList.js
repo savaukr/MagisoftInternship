@@ -4,7 +4,7 @@ import Todo  from './Todo/Todo';
 import './todoList.css';
 
 
-const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo }) => {
+const TodoList = ({todos, isLoding, isError, removeTodo, changeTodo }) => {
     if ( !todos.length && !isLoding && !isError) return (
             <p>Список завдань пустий</p>
     )
@@ -37,7 +37,7 @@ const TodoList = ({todos, objFilters, isLoding, isError, removeTodo, changeTodo 
 
 TodoList.propTypes =  {
     todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    changeIsDone: PropTypes.func.isRequired,
+    changeTodo: PropTypes.func.isRequired,
     removeTodo: PropTypes.func.isRequired
 }
 

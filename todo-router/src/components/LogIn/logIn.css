@@ -1,0 +1,24 @@
+.auth-wrapper {
+    padding: 0 1rem;
+    margin: 10% auto 0;
+   
+}
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+
+}
+#auth__email, #auth__password {
+    margin-bottom:1rem;
+    border:none;
+    border-bottom: 1px solid grey;
+    padding-top: 0.5rem;
+}
+.auth__submit {
+    width: 6rem;
+    margin: 0.5rem 0;
+    background-color: rgb(80,227,164) ;
+    cursor:pointer;
+}

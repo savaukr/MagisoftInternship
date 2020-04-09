@@ -96,11 +96,11 @@ const  infoTodos =  (state = initialState, action) => {
             };
         case CHANGE_TODO_SUCCESS: 
             copyTodos = state.todos.map(todo => {
-                if (todo.id == action.payload.id) return action.payload;
+                if (todo.id === action.payload.id) return action.payload;
                 return todo;
             });
             copyTodosFilter = state.todosFilter.map(todo => {
-                if (todo.id == action.payload.id) return action.payload;
+                if (todo.id === action.payload.id) return action.payload;
                 return todo;
             });
             return {

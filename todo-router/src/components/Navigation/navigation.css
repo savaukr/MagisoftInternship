@@ -1,0 +1,12 @@
+.logInAuth {
+    color:red;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top:-1.3rem;
+}
+.header__link {
+    font-weight: 800;
+    color: rgb(197, 83, 55);
+    padding-right: 1rem;
+}
