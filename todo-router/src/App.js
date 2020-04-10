@@ -13,28 +13,26 @@ import { readJson } from './actions/actions.js';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const  App = (props) => {
-  let IsLogIn = false;
+  let isLogIn = false;
+  let isAuth = isLogIn || false;
   const dispatch = useDispatch();
   useEffect(() => dispatch( readJson() ));
   return (
     <Router>
         <div className="todos-wrapper">
           <Header/>
-          <Route path='/' exact
-                render = { ()=> {
-                  if (!IsLogIn) return <LogIn/>;
-                  return (
-                      <>
-                        <AddTodoContainer />
-                        <FiltersContainer /> 
-                        <TodoListContainer />
-                      </>
-                  )
-                }}
+          <Route path='/' exact render = { () => <LogIn isAuth={ isAuth }/> }/>
+          <Route path='/:id' render = { () => {
+              return (
+                <>
+                  <AddTodoContainer />
+                  <FiltersContainer /> 
+                  <TodoListContainer />
+                </>
+              )
+            }}
           />
           <Route path='/auth' component={ Auth } />
-          <Route path='/login' render= {()=><p>Login component</p>}
-          />
         </div>
     </Router>
   );

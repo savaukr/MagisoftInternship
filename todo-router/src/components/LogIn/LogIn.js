@@ -1,11 +1,17 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import './logIn.css';
 
-const LogIn = () => {
+const LogIn = ({ history, isAuth }) => {
+    let userId=2;
+    if (isAuth !== false)  history.push(`/${userId}`);
     return (
         <div className="auth-wrapper">
             <h2>Авторизуйтесь, будь-ласка:</h2>
-            <form className="auth__form">
+            <form className="auth__form" onSubmit={(e)=>{
+                e.preventDefault();
+                if (isAuth !== false)  history.push(`/${userId}`);
+            }}>
                 <label htmlFor="auth__email" >Email:</label>
                 <input id="auth__email" name="auth_email" type="email" placeholder="введіть свою електр. адресу"/>
                 <label htmlFor="auth__password">Password:</label>
@@ -14,5 +20,6 @@ const LogIn = () => {
             </form>
         </div>
     )
+
 }
-export default LogIn;
+export default withRouter( LogIn );
