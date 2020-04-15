@@ -1,6 +1,7 @@
-import * as firebase from "firebse/app";
+import * as firebase from "firebase/app";
 import "firebase/auth";
-let firebaseConfig = {
+
+const app = firebase.initializeApp({
     apiKey: "AIzaSyDG-XuwwBvBHasaK0UQ6R_OCE8XdvkdDsk",
     authDomain: "todorouter-3fbfe.firebaseapp.com",
     databaseURL: "https://todorouter-3fbfe.firebaseio.com",
@@ -8,8 +9,8 @@ let firebaseConfig = {
     storageBucket: "todorouter-3fbfe.appspot.com",
     messagingSenderId: "482541422662",
     appId: "1:482541422662:web:ee56c9be16637dea1d2247"
-  };
+  });
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  //firebase.initializeApp(app);
 
-  export default firebaseConfig;
+  export default app;

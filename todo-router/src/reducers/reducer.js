@@ -12,7 +12,7 @@ const initialState = {
         {id:"3", title:'tommorow task', createDate: new Date(), dueDate:'2020-03-15', isDone:false }*/
     ],       
     objFilters:{noneFinished:false, outDated:false, tomorrow:false },
-    isLoding: false,
+    isLoading: false,
     isError: false
 } 
 initialState.todosFilter = [...initialState.todos];
@@ -23,7 +23,7 @@ const  infoTodos =  (state = initialState, action) => {
         case READ_JSON_REQUEST:
             return { 
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             }
         case READ_JSON_SUCCESS: 
@@ -31,20 +31,20 @@ const  infoTodos =  (state = initialState, action) => {
                 ...state,
                 todosFilter: action.payload,
                 todos: action.payload,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             };
         case READ_JSON_FAILURE:
             return { 
                 ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             };
 
         case ADD_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case ADD_TODO_SUCCESS: 
@@ -55,20 +55,20 @@ const  infoTodos =  (state = initialState, action) => {
                 todosFilter: copyTodos,
                 todos: copyTodos,
                 objFilters: { noneFinished:false, outDated:false, tomorrow:false },
-                isLoding: false,
+                isLoading: false,
                 isError: false
             };
         case ADD_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
 
         case  REMOVE_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case REMOVE_TODO_SUCCESS: 
@@ -78,20 +78,20 @@ const  infoTodos =  (state = initialState, action) => {
                  ...state,
                 todos: copyTodos,
                 todosFilter: copyTodosFilter,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             }
         case REMOVE_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
             
         case CHANGE_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case CHANGE_TODO_SUCCESS: 
@@ -107,20 +107,20 @@ const  infoTodos =  (state = initialState, action) => {
                  ...state,
                 todos: copyTodos,
                 todosFilter: copyTodosFilter,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             }
         case CHANGE_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
 
         case FILTER_TODO_REQUEST:
             return {
                 ...state,
-                isLoding: true,
+                isLoading: true,
                 isError: false
             };
         case FILTER_TODO_SUCCESS: 
@@ -139,13 +139,13 @@ const  infoTodos =  (state = initialState, action) => {
                 ...state,
                 objFilters: copyFilters,
                 todosFilter: copyTodos,
-                isLoding: false,
+                isLoading: false,
                 isError: false
             }
         case FILTER_TODO_FAILURE:
             return {
                  ...state,
-                isLoding: false,
+                isLoading: false,
                 isError: true
             } 
 

@@ -4,8 +4,8 @@ import Todo  from './Todo/Todo';
 import './todoList.css';
 
 
-const TodoList = ({todos, isLoding, isError, removeTodo, changeTodo }) => {
-    if ( !todos.length && !isLoding && !isError) return (
+const TodoList = ({todos, isLoading, isError, removeTodo, changeTodo}) => {
+    if ( !todos.length && !isLoading && !isError) return (
             <p>Список завдань пустий</p>
     )
     else 
@@ -16,7 +16,7 @@ const TodoList = ({todos, isLoding, isError, removeTodo, changeTodo }) => {
                     <p className="todo__item__dueDate">Due Date</p>
     				<p className="todo__item__icon">Done</p>
     			</div>
-               { isLoding ? ( <p>Loading...</p> ) : isError ? 
+               { isLoading ? ( <p>Loading...</p> ) : isError ? 
                     ( <p>Виникла помилка, спробуйте ще.</p> ) : 
                         (   <ul className="todos-ul">
                                 {todos.map((todo, index)=>(

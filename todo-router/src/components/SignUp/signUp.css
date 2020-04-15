@@ -19,8 +19,6 @@
 .auth__button {
     width: 6rem;
     margin: 0.5rem;
-    color:rgb(255,255,255);
-    padding: 0.2rem 0;
     background-color: rgb(80,157,164) ;
     cursor:pointer;
 }
