@@ -11,14 +11,16 @@ const Login = ({ history  }) => {
         async event => {
           event.preventDefault();
           const { email, password } = event.target.elements;
-          try {
-            await app
-              .auth()
-              .signInWithEmailAndPassword(email.value, password.value);
-            if (!!currentUser) history.push(path+currentUser.uid);
-          } catch (error) {
-            alert(error);
-          }
+          if ( email.value.trim() && password.value.trim() ) { 
+            try {
+              await app
+                .auth()
+                .signInWithEmailAndPassword(email.value, password.value);
+              if (!!currentUser) history.push(path+currentUser.uid);
+            } catch (error) {
+              alert(error);
+            }
+          } else alert('Email or password empty');
         },
         [history]
       );

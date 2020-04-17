@@ -7,14 +7,16 @@ const SignUp = ({ history }) => {
   const handleSignUp = useCallback(async event => {
     event.preventDefault();
     const { email, password } = event.target.elements;
-    try {
-      await app
-        .auth()
-        .createUserWithEmailAndPassword(email.value, password.value);
-      history.push("/login");
-    } catch (error) {
-      alert(error);
-    }
+    if ( email.value.trim() && password.value.trim() ) {
+      try {
+        await app
+          .auth()
+          .createUserWithEmailAndPassword(email.value, password.value);
+        history.push("/login");
+      } catch (error) {
+        alert(error);
+      }
+    } else alert('Email or password empty');
   }, [history]);
 
   return (
