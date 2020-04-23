@@ -1,38 +1,41 @@
 import React, {Component} from 'react'
 import './itemList.css';
-import SwapiService from '../../services/swapiService';
+//import SwapiService from '../../services/swapiService';
 import Spinner from '../Spinner/Spinner';
 import ErrorIndicator from '../ErrorIndicator/ErrorIndicator';
 
 export default class ItemList extends Component {
-    swapiService = new SwapiService();
+    //swapiService = new SwapiService();
     state = {
-        peopleList:null,
+        itemList:null,
         error:false
     }
     
     componentDidMount() {
-        this.swapiService.getAllPeople()
-        .then((peopleList) => {
-            this.setState({ peopleList, error:false })
-        })
-        .catch(this.setState({error:true}))
+        const { getData } = this.props
+        //this.swapiService.getAllPeople()
+        getData()
+            .then((itemList) => {
+                this.setState({ itemList, error:false })
+            })
+            .catch(this.setState({error:true}))
     }
     renderItems(arr) {
-        return arr.map(({id, name}) => {
+        return arr.map((item) => {
+            const {id} = item
+            const label  = this.props.renderItem(item);
             return (
                 <li className="list-group-item"
                     key={id}
                     onClick={() => this.props.onItemSelected(id) }>
-                  {name}
+                  {label}
                 </li>
             )
         })
     }
     render() {
-        const {peopleList, error} = this.state;
-        //console.log(error);
-        if (!peopleList) {
+        const {itemList, error} = this.state;
+        if (!itemList) {
             return <Spinner />
         }
         if (error === true) {
@@ -40,7 +43,7 @@ export default class ItemList extends Component {
              <ErrorIndicator/>
              )
         }
-        const items = this.renderItems(peopleList);
+        const items = this.renderItems(itemList);
         return (
             <ul className="item-list list-group">
                 {items}
