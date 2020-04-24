@@ -1,10 +1,11 @@
 import React , {Component} from 'react';
 import ItemList from '../ItemList/ItemList.js'
-import PersonDetails from '../PersonDetails/PersonDetails.js'
-import ErrorIndicator from '../ErrorIndicator/ErrorIndicator.js'
+import ItemDetails from '../ItemDetails/ItemDetails.js'
+//import ErrorIndicator from '../ErrorIndicator/ErrorIndicator.js'
 import SwapiService from '../../services/swapiService.js';
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js'
 
-const Row = ({left, right}) => {
+export const Row = ({left, right}) => {
 	return (
 		<div className="row mb2">
           <div className="col-md-6">
@@ -16,22 +17,24 @@ const Row = ({left, right}) => {
         </div>
 	)
 }
+
+
+
 export default class PeoplePage extends Component {
 	swapiService = new SwapiService()
 	state= {
-		selectedPerson: 3,
-		hasError: false
+		selectedItem: 3,
 	}
-	componentDidCatch(/*error, info*/) {
-		this.setState({hasError: true});
-	}
-	onPersonSelected = (selectedPerson) => {
-	    this.setState({selectedPerson});
+	
+	onItemSelected = (selectedItem) => {
+	    this.setState({selectedItem});
   	}
   	render() {
-  		if (this.state.hasError) {
+  		
+  		/*if (this.state.hasError) {
   			return <ErrorIndicator/>
-  		}
+  		}*/
+  		/*
   		const itemList = (
   			<ItemList 
             	getData={this.swapiService.getAllPeople}
@@ -39,11 +42,28 @@ export default class PeoplePage extends Component {
             	renderItem = {({name, gender, birthYear}) => 
             		`n: ${name} (g: ${gender}, by: ${birthYear} )` } />
         );
-		const personDetails = (
-			<PersonDetails personId={this.state.selectedPerson} />
+       */
+       const itemList = (
+  			<ItemList 
+            	getData={this.swapiService.getAllPeople}
+            	onItemSelected={this.onItemSelected}
+            >{(i) => 
+            		`n: ${i.name} (g: ${i.gender}, by: ${i.birthYear} )` }
+            </ItemList>
+        );
+		const itemDetails = (
+			<ErrorBoundary>
+				<ItemDetails 
+					itemId={this.state.selectedItem}
+					getData = { this.swapiService.getPerson }
+        			getImageUrl = {this.swapiService.getPersonImage}
+				/>
+			</ErrorBoundary>
 		);
   		return (
-  			<Row left={itemList}  right={personDetails} />
+  			<ErrorBoundary>
+  				<Row left={itemList}  right={itemDetails} />
+  			</ErrorBoundary>
   		)
   	}
 }

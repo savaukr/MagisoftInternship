@@ -1,6 +1,7 @@
 export default class SwapiService {
 
     _apiBase = 'https://swapi.dev/api'
+    _imageBase = 'https://starwars-visualguide.com/assets/img'
 
     getData = async (url) => {
         const res =  await fetch(`${this._apiBase}${url}`);
@@ -18,6 +19,9 @@ export default class SwapiService {
         const person = await this.getData(`/people/${id}`);
         return this._transformPerson(person);
     }
+    getPersonImage = ({id}) => {
+        return `${this._imageBase}/characters/${id}.jpg`
+    }
 
     getAllPlanets = async () => {
         const res = await this.getData(`/planets/`);
@@ -27,6 +31,9 @@ export default class SwapiService {
         const planet = await this.getData(`/planets/${id}`);
         return this._transformPlanet(planet);       
     }
+    getPlanetImage = ({id}) => {
+        return `${this._imageBase}/planets/${id}.jpg`
+    }
 
     getAllStarships = async () => {
         const res = await this.getData(`/starships/`);
@@ -35,6 +42,9 @@ export default class SwapiService {
     getStarship = async (id) => {
         const starship = await this.getData(`/starships/${id}`);
         return this._transformStarship(starship)
+    }
+    getStarshipImage = ({id}) => {
+        return `${this._imageBase}/starships/${id}.jpg`
     }
     _extractId =  (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
@@ -54,8 +64,9 @@ export default class SwapiService {
             id:this._extractId(starship),
             name: starship.name,
             manufacturer: starship.manufacturer,
-            costInCredits :starship.costInCredits,
+            costInCredits :starship.cost_in_credits,
             length: starship.length,
+            model: starship.model,
             crew: starship.crew,
             passengers: starship.passengers,
             cargoCapacity: starship.cargoCapacity

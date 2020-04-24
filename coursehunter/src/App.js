@@ -3,11 +3,13 @@ import './App.css';
 import Header from './components/Header/Header'
 import RandomPlanet from './components/Randomplanet/Randomplanet';
 import ErrorButton from './components/ErrorButton/ErrorButton.js';
-import ErrorIndicator from './components/ErrorIndicator/ErrorIndicator.js'
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.js'
 import PeoplePage from './components/PeoplePage/PeoplePage.js'
 import SwapiService from './services/swapiService'
 
-import PersonDetails from './components/PersonDetails/PersonDetails';
+import {Row} from './components/PeoplePage/PeoplePage.js'
+
+import ItemDetails, {Record} from './components/ItemDetails/ItemDetails';
 import ItemList from './components/ItemList/ItemList'
 
 
@@ -16,7 +18,6 @@ export default class App extends Component {
   swapiService = new SwapiService();
   state = {
     showRandomPlanet: true,
-    hasError:false,
     selectedPerson:2
   }
   // toggleRandomPlanet =() => {
@@ -34,16 +35,38 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return(<ErrorIndicator />)
-    }
+    const {getPerson, getStarship, getPersonImage, getStarshipImage , getPlanetImage} = this.swapiService
+    const personDetails = (
+      <ItemDetails
+         itemId={11}
+         getData = { getPerson }
+         getImageUrl = {getPersonImage}>
+        <Record field="gender" label="Gender:" />
+        <Record field="eyeColor" label="Eye Color:" />
+      </ItemDetails>
+    );
+    const  starshipDetails = (
+      <ItemDetails
+        itemId={10}
+        getData = { getStarship }
+        getImageUrl = {getStarshipImage}>
+        <Record field="model" label="Model:" />
+        <Record field="length" label="Length:" />
+        <Record field="costInCredits" label="Cost:" />
+       </ItemDetails>
+      
+    )
     return (
-      <div className="App stardb-app">
-        <Header/>
-        <RandomPlanet />
-        <ErrorButton />
-        <PeoplePage />
-        
+      <ErrorBoundary>
+        <div className="App stardb-app">
+          <Header/>
+         <PeoplePage /> 
+       
+ {/*
+          <RandomPlanet />
+          <ErrorButton />
+          <PeoplePage />
+       
         <div className="row mb2">
           <div className="col-md-6">
             <ItemList 
@@ -53,9 +76,9 @@ export default class App extends Component {
             />
           </div>
           <div className="col-md-6">
-              <PersonDetails personId={this.state.selectedPerson}/>
+              <ItemDetails itemId={this.state.selectedItem}/>
           </div>
-	      </div>
+        </div>
 
         <div className="row mb2">
             <div className="col-md-6">
@@ -66,20 +89,15 @@ export default class App extends Component {
               />
             </div>
             <div className="col-md-6">
-                <PersonDetails personId={this.state.selectedPerson}/>
+                <ItemDetails itemId={this.state.selectedPerson}/>
             </div>
         </div>
-        {
-        // <div className="row mb2">
-        //   <div className="col-md-6">
-        //     <ItemList onItemSelected={this.onPersonSelected} />
-        //   </div>
-        //   <div className="col-md-6">
-        //       <PersonDetails personId={this.state.selectedPerson}/>
-        //   </div>
-        // </div>
-      }
-      </div>
+     */}
+
+          <Row left={ personDetails } right={ starshipDetails } />
+          
+        </div>
+      </ErrorBoundary>
     )
   }
 }
