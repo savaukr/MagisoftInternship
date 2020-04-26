@@ -10,7 +10,8 @@ import SwapiService from './services/swapiService'
 import {Row} from './components/PeoplePage/PeoplePage.js'
 
 import ItemDetails, {Record} from './components/ItemDetails/ItemDetails';
-import ItemList from './components/ItemList/ItemList'
+import { PersonList, StarshipList, PlanetList } from './components/swComponents';
+//import ItemList from './components/ItemList/ItemList'
 
 
 
@@ -60,13 +61,17 @@ export default class App extends Component {
       <ErrorBoundary>
         <div className="App stardb-app">
           <Header/>
-         <PeoplePage /> 
-       
- {/*
-          <RandomPlanet />
-          <ErrorButton />
+         {/* <RandomPlanet /> */}
           <PeoplePage />
-       
+          <PlanetList>
+            {({name}) => `name:${name}` }
+          </PlanetList>
+          <StarshipList>
+            {({name}) => `name:${name}` }
+          </StarshipList>
+          
+
+     {/*  
         <div className="row mb2">
           <div className="col-md-6">
             <ItemList 
@@ -93,8 +98,8 @@ export default class App extends Component {
             </div>
         </div>
      */}
-
-          <Row left={ personDetails } right={ starshipDetails } />
+          
+         {/*} <Row left={ personDetails } right={ starshipDetails } />*/}
           
         </div>
       </ErrorBoundary>

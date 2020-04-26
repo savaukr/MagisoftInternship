@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import ItemList from '../ItemList/ItemList.js'
-import ItemDetails from '../ItemDetails/ItemDetails.js'
+import { PersonList } from '../swComponents/index'
+import ItemDetails, {Record} from '../ItemDetails/ItemDetails.js'
 //import ErrorIndicator from '../ErrorIndicator/ErrorIndicator.js'
 import SwapiService from '../../services/swapiService.js';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js'
@@ -18,8 +19,6 @@ export const Row = ({left, right}) => {
 	)
 }
 
-
-
 export default class PeoplePage extends Component {
 	swapiService = new SwapiService()
 	state= {
@@ -30,39 +29,36 @@ export default class PeoplePage extends Component {
 	    this.setState({selectedItem});
   	}
   	render() {
-  		
-  		/*if (this.state.hasError) {
-  			return <ErrorIndicator/>
-  		}*/
-  		/*
-  		const itemList = (
+	    const {getAllPeople, getPerson, getPersonImage} = this.swapiService
+        const itemList = (
   			<ItemList 
-            	getData={this.swapiService.getAllPeople}
-            	onItemSelected={this.onPersonSelected}
-            	renderItem = {({name, gender, birthYear}) => 
-            		`n: ${name} (g: ${gender}, by: ${birthYear} )` } />
-        );
-       */
-       const itemList = (
-  			<ItemList 
-            	getData={this.swapiService.getAllPeople}
+            	getData={getAllPeople}
             	onItemSelected={this.onItemSelected}
             >{(i) => 
             		`n: ${i.name} (g: ${i.gender}, by: ${i.birthYear} )` }
-            </ItemList>
-        );
+			</ItemList>			
+		);
+		const personList  = (
+			<PersonList onItemSelected={this.onItemSelected}>
+				{(i) => 
+					`n: ${i.name} (g: ${i.gender}, by: ${i.birthYear} )`}
+			</PersonList> 
+		)
 		const itemDetails = (
 			<ErrorBoundary>
-				<ItemDetails 
+				 <ItemDetails
 					itemId={this.state.selectedItem}
-					getData = { this.swapiService.getPerson }
-        			getImageUrl = {this.swapiService.getPersonImage}
-				/>
+					getData = { getPerson }
+					getImageUrl = {getPersonImage}>
+					<Record field="gender" label="Gender:" />
+        			<Record field="eyeColor" label="Eye Color:" />
+				</ItemDetails>
 			</ErrorBoundary>
 		);
   		return (
   			<ErrorBoundary>
-  				<Row left={itemList}  right={itemDetails} />
+				<Row left={personList}  right={itemDetails} />
+  				{/*<Row left={itemList}  right={itemDetails} />*/}
   			</ErrorBoundary>
   		)
   	}
