@@ -7,6 +7,8 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.js'
 import PeoplePage from './components/PeoplePage/PeoplePage.js'
 import SwapiService from './services/swapiService'
 
+import {PersonDetails, PlanetDetails, StarshipDetails} from './components/swComponents/index'
+
 import {Row} from './components/PeoplePage/PeoplePage.js'
 
 import ItemDetails, {Record} from './components/ItemDetails/ItemDetails';
@@ -62,7 +64,8 @@ export default class App extends Component {
         <div className="App stardb-app">
           <Header/>
          {/* <RandomPlanet /> */}
-          <PeoplePage />
+          {/*<PeoplePage />*/}
+
           <PlanetList>
             {({name}) => `name:${name}` }
           </PlanetList>
@@ -70,6 +73,9 @@ export default class App extends Component {
             {({name}) => `name:${name}` }
           </StarshipList>
           
+          <PersonDetails itemId={11} />
+          <PlanetDetails itemId={5} />
+          <StarshipDetails itemId={9} />
 
      {/*  
         <div className="row mb2">
