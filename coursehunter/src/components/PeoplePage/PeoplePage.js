@@ -5,19 +5,8 @@ import ItemDetails, {Record} from '../ItemDetails/ItemDetails.js'
 //import ErrorIndicator from '../ErrorIndicator/ErrorIndicator.js'
 import SwapiService from '../../services/swapiService.js';
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js'
+import Row from '../Row/Row.js'
 
-export const Row = ({left, right}) => {
-	return (
-		<div className="row mb2">
-          <div className="col-md-6">
-          	{left}
-          </div>
-          <div className="col-md-6">
-            {right}
-          </div>
-        </div>
-	)
-}
 
 export default class PeoplePage extends Component {
 	swapiService = new SwapiService()
