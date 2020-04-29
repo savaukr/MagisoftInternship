@@ -6,15 +6,22 @@ const withData = (View) => {
     return class extends Component {
         state = {
             data:null,
+            loading: true,
             error:false
         }  
 
         update() {
+            this.setState({
+                loading: true,
+                error: false
+            })
             this.props.getData()
                 .then((data) => {
-                    this.setState({ data, error:false })
+                    this.setState({ data,
+                                    error:false,
+                                    loading: false })
                 })
-                .catch(this.setState({error:true}))
+                .catch(this.setState({error:true, loading:false}))
         }
         componentDidMount() {
             this.update();
@@ -25,11 +32,11 @@ const withData = (View) => {
             }
         }
         render() {
-            const {data, error} = this.state;
-            if (!data) {
+            const {data, loading, error} = this.state;
+            if (loading) {
                 return <Spinner />
             }
-            if (error === true) {
+            if (error ) {
                 return (
                 <ErrorIndicator/>
                 )
