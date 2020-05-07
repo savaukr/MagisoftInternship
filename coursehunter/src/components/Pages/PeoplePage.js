@@ -1,29 +1,23 @@
 
-import React, {Component} from 'react'
+import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { PersonList, PersonDetails } from '../swComponents/index'
-import SwapiService from '../../services/swapiService.js';
+
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js'
 import Row from '../Row/Row.js'
 
 
-export default class PeoplePage extends Component {
-	swapiService = new SwapiService()
-	state= {
-		selectedItem: 1,
-	}
+const  PeoplePage = ({history, match}) => { 	
+	const { id } = match.params
 	
-	onItemSelected = (selectedItem) => {
-	    this.setState({selectedItem});
-  	}
-  	render() {
-	    const {selectedItem} = this.state
-  		return (
-  			<ErrorBoundary>
-				<Row 
-					left={<PersonList onItemSelected = {this.onItemSelected}/>}
-					right={<PersonDetails itemId={ selectedItem }/>}
-				/>
-  			</ErrorBoundary>
-  		)
-  	}
+	return (
+		<ErrorBoundary>
+		<Row 
+			left={<PersonList onItemSelected = { (id) => {history.push(id)} }/>}
+			right={<PersonDetails itemId={ id }/>}
+		/>
+		</ErrorBoundary>
+	)
 }
+
+export default withRouter(PeoplePage)

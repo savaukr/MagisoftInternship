@@ -1,28 +1,15 @@
-import React, {Component} from 'react'
-import { StarshipList, StarshipDetails } from '../swComponents/index'
-import SwapiService from '../../services/swapiService.js';
+import React from 'react'
+import { StarshipList } from '../swComponents/index'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary.js'
-import Row from '../Row/Row.js'
+import { withRouter } from 'react-router-dom';
 
-
-export default class StarshipsPage extends Component {
-	swapiService = new SwapiService()
-	state= {
-		selectedItem: 2,
-	}
-	
-	onItemSelected = (selectedItem) => {
-	    this.setState({selectedItem});
-  	}
-  	render() {
-	    const {selectedItem} = this.state
-  		return (
-  			<ErrorBoundary>
-				<Row 
-					left={<StarshipList onItemSelected = {this.onItemSelected}/>}
-					right={<StarshipDetails itemId={ selectedItem }/>}
-				/>
-  			</ErrorBoundary>
-  		)
-  	}
+const  StarshipsPage = ({history}) => {
+	return (
+		<ErrorBoundary>
+		<StarshipList onItemSelected = { (itemId) => {
+			history.push(`${itemId}`)
+		} } />
+		</ErrorBoundary>
+	)
 }
+export default withRouter(StarshipsPage)

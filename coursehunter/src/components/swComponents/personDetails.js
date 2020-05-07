@@ -3,6 +3,9 @@ import ItemDetails, {Record} from '../ItemDetails/ItemDetails'
 import { withSwapiService } from '../HocHelpers/index.js'
 
 const PersonDetails = (props) => {
+    if (!props.itemId) return (
+        <span>Select person</span>
+    )
     return (
         <ItemDetails {...props}>
             <Record field="gender" label="Gender:" />
