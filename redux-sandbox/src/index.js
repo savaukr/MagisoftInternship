@@ -1,30 +1,23 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 // import './index.css';
-// import App from './App';
+import App from './components/app';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducer'
 
-console.log('hello from index')
-const initialState = 0;
-const reducer = (state = initialState, action) => {
-	
-	switch (action.type) {
-		case 'INC' :
-			return ++state;
-		case 'DEC': 
-			return --state;
-		default:
-			return state; 
-	}	
-}
-let state = reducer(undefined, {});
-console.log('state = ', state);
-state = reducer(state, {type:'INC'});
-console.log('state = ', state);
+const store = createStore(reducer);
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+	<React.StrictMode>
+		<Provider store={store}>
+			<App />
+		</Provider>
+	</React.StrictMode>,
+	document.getElementById('root')
+);
+
+
+
+
 
